@@ -66,9 +66,3 @@ Este repositorio contiene los mockups actualizados, junto con observaciones de m
 
 ---
 
-### Cómo crear una rama
-
-1. Navega al directorio del proyecto:
-
-```bash
-cd ruta/al/proyecto
