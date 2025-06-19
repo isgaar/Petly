@@ -35,5 +35,3 @@ Este repositorio contiene los mockups actualizados, junto con observaciones de m
 - Seguimiento de envíos estilo Mercado Libre
 - Iconografía familiar e intuitiva
 
-## 🚀 Instrucciones para subir este repositorio a GitHub
-
