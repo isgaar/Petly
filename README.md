@@ -35,3 +35,40 @@ Este repositorio contiene los mockups actualizados, junto con observaciones de m
 - Seguimiento de envíos estilo Mercado Libre
 - Iconografía familiar e intuitiva
 
+
+- **Tipos de rama:**  
+  - `feat` — Nueva funcionalidad  
+  - `fix` — Corrección de errores  
+  - `refactor` — Refactorización o mejora del código  
+  - `docs` — Documentación  
+  - `chore` — Tareas administrativas o de infraestructura  
+
+- **Áreas:**  
+  - `frontend`  
+  - `backend`  
+  - `database`  
+  - `devops`  
+
+---
+
+### Roles y ejemplos de ramas
+
+| Usuario                             | Rol                                | Ejemplo de rama                         |
+|-----------------------------------|-----------------------------------|---------------------------------------|
+| **José Aaron Hernández**           | Frontend (Diseño y Desarrollo)    | `feat/frontend/nueva-funcionalidad`   |
+|                                   |                                   | `fix/frontend/correccion-bug`          |
+| **Ramírez Vega Iosef Yamil**       | Base de datos (Programador)       | `feat/database/nueva-tabla`             |
+|                                   |                                   | `fix/database/correccion-consulta`      |
+| **Gaspar Cruz Ismael**             | Product Owner                     | `docs/actualizar-readme`               |
+| **Alvízar Martínez Alexis**        | Backend (Programador)             | `feat/backend/integrar-api`            |
+|                                   |                                   | `refactor/backend/mejoras-codigo`      |
+| **Andrade Carbajal Jesús Ricardo** | SCRUM Master                     | `chore/devops/configurar-ci`           |
+
+---
+
+### Cómo crear una rama
+
+1. Navega al directorio del proyecto:
+
+```bash
+cd ruta/al/proyecto
