@@ -29,7 +29,7 @@ Este repositorio contiene los mockups actualizados, junto con observaciones de m
 ├── .gitignore         # Archivos ignorados por Git
 ├── README.md          # Descripción del proyecto
 └── LICENSE            # (Opcional)
-``
+```
 
 ## 🧠 Sugerencias de diseño aplicadas
 
@@ -66,3 +66,29 @@ Este proyecto trabajará principalmente con las siguientes ramas:
 
 ---
 
+## 🧪 Ejemplo de flujo de trabajo
+
+### Caso: José Aaron necesita cambiar la vista de login
+
+1. Se posiciona en la rama `test`:
+   ```bash
+   git checkout test
+   ```
+
+2. Crea una nueva rama desde `test` con el nombre adecuado:
+   ```bash
+   git checkout -b feat/frontend/vista-login
+   ```
+
+3. Realiza los cambios necesarios en su entorno local.
+
+4. Sube su rama al repositorio:
+   ```bash
+   git push origin feat/frontend/vista-login
+   ```
+
+5. Abre un **Pull Request hacia `test`** para revisión y pruebas.
+
+6. Una vez aprobado por el equipo y verificado su funcionamiento, el SCRUM Master puede **fusionar `test` a `main`**.
+
+---
