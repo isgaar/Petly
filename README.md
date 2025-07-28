@@ -49,7 +49,7 @@ Este proyecto trabajará principalmente con las siguientes ramas:
 
 - `main` — Código estable y listo para producción.
 - `test` — Rama destinada a pruebas y validación antes de pasar a `main`.
-- `docs` — Rama destinada a documentación del desarrollo del proyecto.
+- `docs-gen` — Rama destinada a documentación del desarrollo del proyecto.
 
 
 ### Roles
