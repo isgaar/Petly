@@ -470,7 +470,7 @@ En este flujo, el **cliente** explora el catálogo y selecciona productos que lu
 **Flujo de Adopción de Mascota** – desde la selección de una mascota hasta el envío de la solicitud de adopción y su aprobación:
 
 &#x20;*Diagrama de flujo del proceso de adopción de una mascota en Petly-Web.*
-![Diagrama de flujo](docs/imgs/diagramadeflujo.svg)
+![Diagrama de flujo](/docs/imgs/diagramadeflujo.svg)
 
 
 En este diagrama, el usuario inicia navegando la lista de mascotas disponibles. Al interesarse en una, visualiza su perfil y decide **“Solicitar Adopción”**. Si no ha iniciado sesión, el sistema lo redirige a autenticarse; si ya está logueado, pasa directamente a mostrar el **formulario de adopción**. El usuario completa el formulario con la información requerida y lo envía, generándose así la solicitud en estado pendiente. En el flujo administrativo (parte derecha del diagrama), un **Administrador** revisa la solicitud y toma una decisión: aprobarla o rechazarla. Tras la decisión, el sistema notifica al usuario el resultado (por ejemplo, vía correo o en el portal web). Si es aprobada, la adopción procede (coordinada fuera del sistema), y la mascota queda marcada como no disponible. Si es rechazada, la mascota podría permanecer en lista de adoptables para otros solicitantes.
