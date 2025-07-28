@@ -52,8 +52,6 @@ Este proyecto trabajará principalmente con las siguientes ramas:
 - `docs` — Rama destinada a documentación del desarrollo del proyecto.
 
 
-¡Perfecto! Aquí está la tabla corregida, con el **Product Owner** primero, seguido del **SCRUM Master**, y luego el resto del equipo:
-
 ### Roles
 
 | Integrante                            | Rol                            |
