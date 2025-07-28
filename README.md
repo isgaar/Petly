@@ -1,4 +1,4 @@
-# Petly - Mockups y Diseño de Interfaz
+# Petly
 
 Este repositorio contiene los mockups, prototipos de interfaz y retroalimentación visual del proyecto **Petly**, una plataforma e-commerce centrada en el bienestar animal, venta de productos y adopción de mascotas. Forma parte del trabajo realizado por el equipo de la carrera IDGS 9B de la Universidad Tecnológica del Centro de Veracruz (UTCV).
 
@@ -92,3 +92,32 @@ Este proyecto trabajará principalmente con las siguientes ramas:
 6. Una vez aprobado por el equipo y verificado su funcionamiento, el SCRUM Master puede **fusionar `test` a `main`**.
 
 ---
+
+
+## 📌 Nota de responsabilidad
+
+A partir del **6 de agosto del año 2026**, el equipo de desarrollo descrito en este documento se deslinda de toda responsabilidad en cuanto al mantenimiento, soporte, continuidad y actualización del proyecto.
+
+Todo uso posterior, modificación o distribución del código fuente será enteramente responsabilidad de los usuarios, instituciones o terceros que lo adopten.
+
+---
+
+## 🔒 Políticas de privacidad (vigentes hasta el 6 de agosto de 2026)
+
+Durante el desarrollo activo del proyecto, se han seguido las siguientes políticas de privacidad:
+
+1. **Uso de datos**: Todos los datos de usuario recolectados fueron utilizados exclusivamente para el funcionamiento interno de la aplicación, sin fines comerciales ni de terceros.
+
+2. **Almacenamiento seguro**: Los datos fueron almacenados en bases de datos cifradas y protegidas por autenticación segura, con copias de respaldo periódicas.
+
+3. **Acceso restringido**: Sólo el equipo autorizado tenía acceso a la información sensible. Cada miembro fue responsable de cumplir con estándares éticos y legales.
+
+4. **No rastreo**: La aplicación no incluye mecanismos de rastreo ni almacenamiento de datos no explícitamente proporcionados por el usuario.
+
+5. **Eliminación voluntaria**: Cualquier usuario podía solicitar la eliminación total de sus datos en cualquier momento dentro del periodo de soporte.
+
+6. **No cesión de datos**: En ningún momento se cedieron, vendieron ni compartieron datos personales a empresas externas ni terceros.
+
+---
+
+A partir del 6 de agosto de 2026, estas políticas dejan de tener validez activa por parte del equipo original. Se recomienda a cualquier entidad que continúe con el desarrollo o despliegue del proyecto que establezca sus propias políticas conforme a la legislación vigente en su jurisdicción.
