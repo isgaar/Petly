@@ -20,11 +20,16 @@ Este repositorio contiene los mockups actualizados, junto con observaciones de m
 - Ramírez Vega Iosef Yamil  
 - Gaspar Cruz Ismael  
 
-## 🗂 Contenido del repositorio
+## 📁 Estructura del repositorio
 
-- 📄 `/mockups` – Carpeta con mockups en formato imagen o PDF
-- 📄 `Reporte_Petly.docx` – Retroalimentación sobre los diseños actuales
-- 📄 `Levantamiento_de_Requisitos_Petly.docx` – Documento formal con requisitos funcionales y no funcionales
+```
+/
+├── docs/              # Documentación del proyecto
+├── Petly-Web/         # Código fuente del proyecto Laravel
+├── .gitignore         # Archivos ignorados por Git
+├── README.md          # Descripción del proyecto
+└── LICENSE            # (Opcional)
+``
 
 ## 🧠 Sugerencias de diseño aplicadas
 
@@ -36,33 +41,28 @@ Este repositorio contiene los mockups actualizados, junto con observaciones de m
 - Iconografía familiar e intuitiva
 
 
-- **Tipos de rama:**  
-  - `feat` — Nueva funcionalidad  
-  - `fix` — Corrección de errores  
-  - `refactor` — Refactorización o mejora del código  
-  - `docs` — Documentación  
-  - `chore` — Tareas administrativas o de infraestructura  
+# Convenciones de Ramas
 
-- **Áreas:**  
-  - `frontend`  
-  - `backend`  
-  - `database`  
-  - `devops`  
+Este proyecto trabajará principalmente con las siguientes ramas:
 
----
+## 🌿 Ramas principales
 
-### Roles y ejemplos de ramas
+- `main` — Código estable y listo para producción.
+- `test` — Rama destinada a pruebas y validación antes de pasar a `main`.
 
-| Usuario                             | Rol                                | Ejemplo de rama                         |
-|-----------------------------------|-----------------------------------|---------------------------------------|
-| **José Aaron Hernández**           | Frontend (Diseño y Desarrollo)    | `feat/frontend/nueva-funcionalidad`   |
-|                                   |                                   | `fix/frontend/correccion-bug`          |
-| **Ramírez Vega Iosef Yamil**       | Base de datos (Programador)       | `feat/database/nueva-tabla`             |
-|                                   |                                   | `fix/database/correccion-consulta`      |
-| **Gaspar Cruz Ismael**             | Product Owner                     | `docs/actualizar-readme`               |
-| **Alvízar Martínez Alexis**        | Backend (Programador)             | `feat/backend/integrar-api`            |
-|                                   |                                   | `refactor/backend/mejoras-codigo`      |
-| **Andrade Carbajal Jesús Ricardo** | SCRUM Master                     | `chore/devops/configurar-ci`           |
+
+### Roles
+
+| Usuario                             | Rol                                
+|-----------------------------------|-----------------------------------|
+| **José Aaron Hernández**           | Frontend (Diseño y Desarrollo)    |
+|                                   |                                   |
+| **Ramírez Vega Iosef Yamil**       | Base de datos (Programador)       |
+|                                   |                                   |
+| **Gaspar Cruz Ismael**             | Product Owner                     
+| **Alvízar Martínez Alexis**        | Backend (Programador)             |
+|                                   |                                   |
+| **Andrade Carbajal Jesús Ricardo** | SCRUM Master                     |
 
 ---
 
