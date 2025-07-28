@@ -49,20 +49,22 @@ Este proyecto trabajará principalmente con las siguientes ramas:
 
 - `main` — Código estable y listo para producción.
 - `test` — Rama destinada a pruebas y validación antes de pasar a `main`.
+- `docs` — Rama destinada a documentación del desarrollo del proyecto.
 
+
+¡Perfecto! Aquí está la tabla corregida, con el **Product Owner** primero, seguido del **SCRUM Master**, y luego el resto del equipo:
 
 ### Roles
 
-| Usuario                             | Rol                                
-|-----------------------------------|-----------------------------------|
-| **José Aaron Hernández**           | Frontend (Diseño y Desarrollo)    |
-|                                   |                                   |
-| **Ramírez Vega Iosef Yamil**       | Base de datos (Programador)       |
-|                                   |                                   |
-| **Gaspar Cruz Ismael**             | Product Owner                     
-| **Alvízar Martínez Alexis**        | Backend (Programador)             |
-|                                   |                                   |
-| **Andrade Carbajal Jesús Ricardo** | SCRUM Master                     |
+| Integrante                            | Rol                            |
+| ---------------------------------- | ------------------------------ |
+| **Gaspar Cruz Ismael**             | Product Owner                  |
+| **Andrade Carbajal Jesús Ricardo** | SCRUM Master                   |
+| **José Aaron Hernández**           | Frontend (Diseño y Desarrollo) |
+| **Ramírez Vega Iosef**        | Backend (Programador)          |
+| **Alvízar Martínez Alexis**       | Base de datos (Programador)    |
+
+
 
 ---
 
