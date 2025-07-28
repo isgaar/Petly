@@ -69,7 +69,6 @@ Los vendedores tendrán una vista donde verán las ventas físicas que registran
 Gráfico de ventas interactivo
 El panel de administrador incluirá un gráfico interactivo que permita cambiar entre tipos de visualización (barra, línea, pastel) para observar las ventas según distintos criterios.
 
-🔷 3. Requisitos No Funcionales (detallados)
 
 ## 3. Requisitos No Funcionales
 Interfaz intuitiva y amigable
