@@ -1,0 +1,67 @@
+<h2>Registro - Paso {{ step }}</h2>
+
+<form [formGroup]="registerForm" (ngSubmit)="registrar()">
+
+<!-- Paso 1 -->
+<div *ngIf="step === 1">
+  <label>Nombre:</label>
+  <input type="text" formControlName="nombre" />
+  <div *ngIf="mostrarErrores && registerForm.get('nombre')?.invalid" class="error-text">
+    Este campo es obligatorio.
+  </div>
+
+  <label>Primer Apellido:</label>
+  <input type="text" formControlName="primerApellido" />
+  <div *ngIf="mostrarErrores && registerForm.get('primerApellido')?.invalid" class="error-text">
+    Este campo es obligatorio.
+  </div>
+
+  <label>Segundo Apellido:</label>
+  <input type="text" formControlName="segundoApellido" />
+  <div *ngIf="mostrarErrores && registerForm.get('segundoApellido')?.invalid" class="error-text">
+    Este campo es obligatorio.
+  </div>
+
+  <label>CURP:</label>
+  <input type="text" formControlName="curp" />
+  <div *ngIf="mostrarErrores && registerForm.get('curp')?.invalid" class="error-text">
+    La CURP debe tener exactamente 18 caracteres.
+  </div>
+
+  <button type="button" (click)="nextStep()">Siguiente</button>
+</div>
+
+
+
+
+<!-- Paso 2 -->
+<div *ngIf="step === 2">
+  <label>Correo electrónico:</label>
+  <input type="email" formControlName="correo" />
+  <div *ngIf="mostrarErrores && registerForm.get('correo')?.invalid" class="error-text">
+    Ingresa un correo válido.
+  </div>
+
+  <label>Contraseña:</label>
+  <input type="password" formControlName="contrasena" />
+  <div *ngIf="mostrarErrores && registerForm.get('contrasena')?.invalid" class="error-text">
+    La contraseña debe tener al menos 6 caracteres.
+  </div>
+
+  <label>Confirmar Contraseña:</label>
+  <input type="password" formControlName="confirmarContrasena" />
+  <div *ngIf="mostrarErrores && registerForm.get('confirmarContrasena')?.invalid" class="error-text">
+    Confirma tu contraseña.
+  </div>
+
+  <!-- ⚠️ Mensaje si no coinciden -->
+  <div *ngIf="mostrarErrores && registerForm.value.contrasena !== registerForm.value.confirmarContrasena" class="error-text">
+    Las contraseñas no coinciden.
+  </div>
+
+  <button type="button" (click)="previousStep()">Regresar</button>
+  <button type="submit">Registrarse</button>
+</div>
+
+
+</form>
