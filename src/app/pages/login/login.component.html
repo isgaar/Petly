@@ -1,0 +1,15 @@
+<div class="login-container">
+  <h2>Iniciar Sesión</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
+    <label for="identificador">Correo o CURP:</label>
+    <input id="identificador" formControlName="identificador" type="text" />
+
+    <label for="contrasena">Contraseña:</label>
+    <input id="contrasena" formControlName="contrasena" type="password" />
+
+    <button type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+  </form>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+</div>

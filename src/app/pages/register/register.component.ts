@@ -2,10 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { RegisterService } from '../../services/register.service';
+
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register',
-  standalone: true, // 👈 MUY IMPORTANTE
-  imports: [CommonModule, ReactiveFormsModule], // 👈 También importante
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
@@ -16,7 +20,7 @@ export class RegisterComponent {
 
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private registerService: RegisterService, private router: Router) {
     this.registerForm = this.fb.group({
       nombre: ['', Validators.required],
       primerApellido: ['', Validators.required],
@@ -56,15 +60,24 @@ export class RegisterComponent {
   }
 
   registrar() {
-  this.mostrarErrores = true;
+    this.mostrarErrores = true;
+    const pass = this.registerForm.value.contrasena;
+    const confirm = this.registerForm.value.confirmarContrasena;
 
-  const pass = this.registerForm.value.contrasena;
-  const confirm = this.registerForm.value.confirmarContrasena;
+    if (this.registerForm.valid && pass === confirm) {
+      const payload = { ...this.registerForm.value };
+      delete payload.confirmarContrasena; // no se envía al backend
 
-  if (this.registerForm.valid && pass === confirm) {
-    console.log('Datos enviados:', this.registerForm.value);
-    // Aquí iría tu lógica para enviar al backend
+      this.registerService.registrarUsuario(payload).subscribe({
+        next: (res) => {
+          alert(res.mensaje);
+          this.router.navigate(['/verificar-correo'], { queryParams: { correo: this.registerForm.value.correo } });
+        },
+        error: (err) => {
+          alert('Error: ' + err.error.mensaje);
+        }
+      });
+    }
   }
-}
 
 }
