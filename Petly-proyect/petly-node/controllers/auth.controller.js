@@ -1,6 +1,8 @@
+// controllers/auth.controller.js
 const pool = require('../db');
+const { enviarCodigoVerificacion } = require('../emailService');
 
-// Módulo para validar CURP
+// ========== UTILIDAD: Validación de CURP ==========
 function validarCurp(curp, nombre, apellido1, apellido2) {
   const estadosCurp = {
     'AS': 'Aguascalientes', 'BC': 'Baja California', 'BS': 'Baja California Sur',
@@ -21,15 +23,13 @@ function validarCurp(curp, nombre, apellido1, apellido2) {
 
   if (curp.length !== 18) return { valido: false, razon: 'Longitud incorrecta' };
 
-  // Validación de letras del nombre/apellidos
   if (!(curp[0] === apellido1[0] &&
-        curp[1] && apellido1.includes(curp[1]) &&
-        curp[2] && apellido2.includes(curp[2]) &&
-        curp[3] && nombre.includes(curp[3]))) {
+        apellido1.includes(curp[1]) &&
+        apellido2.includes(curp[2]) &&
+        nombre.includes(curp[3]))) {
     return { valido: false, razon: 'La CURP no coincide con el nombre y apellidos' };
   }
 
-  // Fecha de nacimiento
   try {
     const anio = parseInt(curp.slice(4, 6));
     const mes = parseInt(curp.slice(6, 8));
@@ -54,23 +54,19 @@ function validarCurp(curp, nombre, apellido1, apellido2) {
   }
 }
 
-// Función para registrar un nuevo usuario
+// ========== REGISTRO ==========
 const registrarUsuario = async (req, res) => {
   try {
     const { nombre, primerApellido, segundoApellido, curp, correo, contrasena } = req.body;
-
-    // Validación básica
     if (!nombre || !primerApellido || !curp || !correo || !contrasena) {
       return res.status(400).json({ mensaje: 'Faltan campos obligatorios' });
     }
 
-    // Validar CURP contra nombre y estructura
     const curpValidada = validarCurp(curp, nombre, primerApellido, segundoApellido);
     if (!curpValidada.valido) {
       return res.status(400).json({ mensaje: 'CURP incorrecta' });
     }
 
-    // Verificar si ya existe un usuario con ese correo o curp
     const usuarioExistente = await pool.query(
       'SELECT * FROM usuarios WHERE correo = $1 OR curp = $2',
       [correo, curp]
@@ -79,35 +75,30 @@ const registrarUsuario = async (req, res) => {
       return res.status(409).json({ mensaje: 'Ya existe un usuario con ese correo o CURP' });
     }
 
-    // Insertar el nuevo usuario
     await pool.query(
-  `INSERT INTO usuarios (
-    nombre, primer_apellido, segundo_apellido,
-    curp, correo, contrasena,
-    fecha_nacimiento, sexo, estado_nacimiento
-  ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-  [
-    nombre,
-    primerApellido,
-    segundoApellido,
-    curp,
-    correo,
-    contrasena,
-    curpValidada.fechaNacimiento,
-    curpValidada.sexo,
-    curpValidada.estadoNacimiento
-  ]
-);
+      `INSERT INTO usuarios (
+        nombre, primer_apellido, segundo_apellido,
+        curp, correo, contrasena,
+        fecha_nacimiento, sexo, estado_nacimiento
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+      [
+        nombre, primerApellido, segundoApellido, curp,
+        correo, contrasena,
+        curpValidada.fechaNacimiento,
+        curpValidada.sexo,
+        curpValidada.estadoNacimiento
+      ]
+    );
 
+    const codigo = Math.floor(100000 + Math.random() * 900000);
+    await pool.query(
+      'INSERT INTO codigos_verificacion (correo, codigo) VALUES ($1, $2)',
+      [correo, codigo.toString()]
+    );
 
-    res.status(201).json({
-      mensaje: 'Usuario registrado correctamente',
-      datosCurp: {
-        fechaNacimiento: curpValidada.fechaNacimiento,
-        sexo: curpValidada.sexo,
-        estadoNacimiento: curpValidada.estadoNacimiento
-      }
-    });
+    await enviarCodigoVerificacion(correo, codigo);
+
+    res.status(201).json({ mensaje: 'Usuario registrado. Verifica tu correo electrónico.' });
 
   } catch (error) {
     console.error('Error al registrar usuario:', error);
@@ -115,6 +106,92 @@ const registrarUsuario = async (req, res) => {
   }
 };
 
+// ========== LOGIN ==========
+const iniciarSesion = async (req, res) => {
+  try {
+    const { identificador, contrasena } = req.body;
+    if (!identificador || !contrasena) {
+      return res.status(400).json({ mensaje: 'Faltan datos para iniciar sesión' });
+    }
+
+    const resultado = await pool.query(
+      'SELECT * FROM usuarios WHERE correo = $1 OR curp = $1',
+      [identificador]
+    );
+    const usuario = resultado.rows[0];
+
+    if (!usuario) return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+    if (usuario.contrasena !== contrasena) return res.status(401).json({ mensaje: 'Contraseña incorrecta' });
+
+    res.status(200).json({
+      mensaje: 'Inicio de sesión exitoso',
+      usuario: {
+        id: usuario.id_usuario,
+        nombre: usuario.nombre,
+        correo: usuario.correo
+      }
+    });
+  } catch (error) {
+    console.error('Error al iniciar sesión:', error);
+    res.status(500).json({ mensaje: 'Error interno del servidor' });
+  }
+};
+
+// ========== VERIFICAR CÓDIGO ==========
+const verificarCodigo = async (req, res) => {
+  try {
+    const { correo, codigo } = req.body;
+    if (!correo || !codigo) {
+      return res.status(400).json({ mensaje: 'Correo y código son requeridos' });
+    }
+
+    const resultado = await pool.query(
+      'SELECT * FROM codigos_verificacion WHERE correo = $1 AND codigo = $2',
+      [correo, codigo]
+    );
+
+    if (resultado.rows.length === 0) {
+      return res.status(404).json({ mensaje: 'Código incorrecto o ya verificado' });
+    }
+
+    await pool.query('DELETE FROM codigos_verificacion WHERE correo = $1 AND codigo = $2', [correo, codigo]);
+
+    res.status(200).json({ mensaje: 'Correo verificado correctamente' });
+  } catch (error) {
+    console.error('Error al verificar código:', error);
+    res.status(500).json({ mensaje: 'Error interno del servidor' });
+  }
+};
+
+// ========== REENVIAR CÓDIGO ==========
+const reenviarCodigo = async (req, res) => {
+  try {
+    const { correo } = req.body;
+    if (!correo) return res.status(400).json({ mensaje: 'Correo requerido' });
+
+    const usuario = await pool.query('SELECT * FROM usuarios WHERE correo = $1', [correo]);
+    if (usuario.rows.length === 0) {
+      return res.status(404).json({ mensaje: 'No existe un usuario con ese correo' });
+    }
+
+    await pool.query('DELETE FROM codigos_verificacion WHERE correo = $1', [correo]);
+
+    const nuevoCodigo = Math.floor(100000 + Math.random() * 900000).toString();
+    await pool.query('INSERT INTO codigos_verificacion (correo, codigo) VALUES ($1, $2)', [correo, nuevoCodigo]);
+
+    await enviarCodigoVerificacion(correo, nuevoCodigo);
+
+    res.status(200).json({ mensaje: 'Nuevo código enviado al correo' });
+  } catch (error) {
+    console.error('Error al reenviar código:', error);
+    res.status(500).json({ mensaje: 'Error interno del servidor' });
+  }
+};
+
+// ========== EXPORT ==========
 module.exports = {
-  registrarUsuario
+  registrarUsuario,
+  iniciarSesion,
+  verificarCodigo,
+  reenviarCodigo
 };
