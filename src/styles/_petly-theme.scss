@@ -1,0 +1,70 @@
+// 🎨 Colores base
+$color-fondo: #cee4ff; // Fondo amigable (mockup)
+$color-principal: #008a0e; // Verde fuerte para títulos y botones
+$color-secundario: #54c45e; // Verde claro (botones secundarios o fondos suaves)
+$color-error: #d32f2f;
+$color-texto: #222;
+
+// 🖋️ Tipografía
+$fuente-principal: 'Poppins', sans-serif;
+$titulo-grande: 2rem;
+$titulo-medio: 1.5rem;
+$texto-normal: 1rem;
+
+// 🧩 Clases reutilizables
+.petly-container {
+  background-color: $color-fondo;
+  font-family: $fuente-principal;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 480px;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.petly-logo {
+  display: block;
+  margin: auto;
+  max-width: 100px;
+}
+
+.petly-titulo {
+  color: $color-principal;
+  font-size: $titulo-grande;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.petly-label {
+  font-weight: bold;
+  margin-top: 1rem;
+  display: block;
+}
+
+.petly-input {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font-size: $texto-normal;
+}
+
+.petly-boton {
+  background-color: $color-secundario;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  padding: 0.8rem;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.petly-error {
+  color: $color-error;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
