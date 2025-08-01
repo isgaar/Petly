@@ -45,7 +45,7 @@ export class VerificarCorreoComponent {
       next: (res: any) => {
         this.mensaje = res.mensaje;
         setTimeout(() => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/home']);
         }, 1500);
       },
       error: (err) => {

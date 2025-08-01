@@ -1,0 +1,25 @@
+.producto-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    color: #008a0e;
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+
+  p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+}

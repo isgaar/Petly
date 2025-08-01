@@ -1,0 +1,18 @@
+.petly-subtexto {
+  text-align: center;
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.petly-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .petly-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
