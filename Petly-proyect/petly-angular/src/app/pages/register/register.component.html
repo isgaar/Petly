@@ -1,0 +1,65 @@
+<div class="petly-container">
+  <img src="assets/logo.png" alt="Petly" class="petly-logo" />
+  <h2 class="petly-titulo">Crear cuenta</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="registrar()">
+
+    <!-- Paso 1 -->
+    <div *ngIf="step === 1">
+      <label class="petly-label">Nombre</label>
+      <input type="text" formControlName="nombre" class="petly-input" />
+      <div *ngIf="mostrarErrores && registerForm.get('nombre')?.invalid" class="petly-error">
+        Este campo es obligatorio.
+      </div>
+
+      <label class="petly-label">Primer Apellido</label>
+      <input type="text" formControlName="primerApellido" class="petly-input" />
+      <div *ngIf="mostrarErrores && registerForm.get('primerApellido')?.invalid" class="petly-error">
+        Este campo es obligatorio.
+      </div>
+
+      <label class="petly-label">Segundo Apellido</label>
+      <input type="text" formControlName="segundoApellido" class="petly-input" />
+      <div *ngIf="mostrarErrores && registerForm.get('segundoApellido')?.invalid" class="petly-error">
+        Este campo es obligatorio.
+      </div>
+
+      <label class="petly-label">CURP</label>
+      <input type="text" formControlName="curp" class="petly-input" />
+      <div *ngIf="mostrarErrores && registerForm.get('curp')?.invalid" class="petly-error">
+        La CURP debe tener exactamente 18 caracteres.
+      </div>
+
+      <button type="button" (click)="nextStep()" class="petly-boton">Siguiente</button>
+    </div>
+
+    <!-- Paso 2 -->
+    <div *ngIf="step === 2">
+      <label class="petly-label">Correo electrónico</label>
+      <input type="email" formControlName="correo" class="petly-input" />
+      <div *ngIf="mostrarErrores && registerForm.get('correo')?.invalid" class="petly-error">
+        Ingresa un correo válido.
+      </div>
+
+      <label class="petly-label">Contraseña</label>
+      <input type="password" formControlName="contrasena" class="petly-input" />
+      <div *ngIf="mostrarErrores && registerForm.get('contrasena')?.invalid" class="petly-error">
+        La contraseña debe tener al menos 6 caracteres.
+      </div>
+
+      <label class="petly-label">Confirmar contraseña</label>
+      <input type="password" formControlName="confirmarContrasena" class="petly-input" />
+      <div *ngIf="mostrarErrores && registerForm.get('confirmarContrasena')?.invalid" class="petly-error">
+        Confirma tu contraseña.
+      </div>
+
+      <div *ngIf="mostrarErrores && registerForm.value.contrasena !== registerForm.value.confirmarContrasena" class="petly-error">
+        Las contraseñas no coinciden.
+      </div>
+
+      <button type="button" (click)="previousStep()" class="petly-boton">Regresar</button>
+      <button type="submit" class="petly-boton">Registrarse</button>
+    </div>
+
+  </form>
+</div>

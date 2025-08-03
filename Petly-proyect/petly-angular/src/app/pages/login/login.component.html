@@ -1,0 +1,16 @@
+<div class="petly-container">
+  <img src="assets/logo.png" alt="Petly" class="petly-logo" />
+  <h2 class="petly-titulo">Iniciar Sesión</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
+    <label class="petly-label" for="identificador">Correo o CURP</label>
+    <input id="identificador" formControlName="identificador" type="text" class="petly-input" />
+
+    <label class="petly-label" for="contrasena">Contraseña</label>
+    <input id="contrasena" formControlName="contrasena" type="password" class="petly-input" />
+
+    <button type="submit" [disabled]="loginForm.invalid" class="petly-boton">Ingresar</button>
+  </form>
+
+  <div *ngIf="error" class="petly-error">{{ error }}</div>
+</div>

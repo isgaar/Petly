@@ -1,0 +1,21 @@
+<div class="petly-container">
+  <img src="assets/logo.png" alt="Petly" class="petly-logo" />
+  <h2 class="petly-titulo">Verifica tu correo electrónico</h2>
+
+  <p>Hemos enviado un código a: <strong>{{ correo }}</strong></p>
+  <p>Ingresa el código de 6 dígitos que recibiste para continuar.</p>
+
+  <form [formGroup]="verificarForm" (ngSubmit)="verificar()">
+    <label class="petly-label" for="codigo">Código de verificación</label>
+    <input id="codigo" type="text" formControlName="codigo" maxlength="6" class="petly-input" />
+
+    <div *ngIf="verificarForm.get('codigo')?.invalid && verificarForm.get('codigo')?.touched" class="petly-error">
+      El código es obligatorio y debe tener 6 dígitos.
+    </div>
+
+    <button type="submit" [disabled]="verificarForm.invalid" class="petly-boton">Verificar</button>
+  </form>
+
+  <div *ngIf="mensaje" class="success">{{ mensaje }}</div>
+  <div *ngIf="error" class="petly-error">{{ error }}</div>
+</div>
