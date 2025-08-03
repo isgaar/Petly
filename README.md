@@ -24,11 +24,42 @@ Este repositorio contiene los mockups actualizados, junto con observaciones de m
 
 ```
 /
-├── docs/              # Documentación del proyecto
-├── Petly-Web/         # Código fuente del proyecto Laravel
-├── .gitignore         # Archivos ignorados por Git
-├── README.md          # Descripción del proyecto
-└── LICENSE            # (Opcional)
+├── docs/                             # Documentación general del proyecto
+│   ├── imgs/                         # Imágenes de soporte
+│   └── mockups/                      # Mockups y especificaciones técnicas
+│       ├── api.md                    # Endpoints planeados
+│       ├── instalacion.md            # Guía de instalación del entorno
+│       ├── levantamiento_requisitos.md
+│       ├── Planeacion_SCRUM.md       # Planeación ágil del proyecto
+│       ├── Politicas_de_colaboracion.md
+│       ├── Reporte Petly.docx        # Informe en formato Word
+│       └── Reporte.md                # Informe en formato Markdown
+
+├── Petly-proyect/                    # Carpeta raíz del desarrollo
+│   ├── petly-angular/                # Código del backend (Angular)
+│   │   ├── .vscode/                  # Configuraciones de VS Code
+│   │   ├── public/                   # Recursos públicos
+│   │   ├── src/                      # Código fuente de Angular
+│   │   ├── angular.json              # Configuración Angular
+│   │   ├── package.json              # Dependencias del proyecto
+│   │   ├── package-lock.json         # Registro de dependencias instaladas
+│   │   ├── tsconfig*.json            # Configuraciones TypeScript
+│   │   └── README.md                 # Instrucciones del backend
+
+│   └── petly-node/                   # Código del frontend (Node.js + Express)
+│       ├── controllers/              # Lógica de negocio
+│       ├── routes/                   # Rutas API
+│       ├── db.js                     # Conexión a la base de datos PostgreSQL
+│       ├── index.js                  # Entrada principal del servidor
+│       ├── emailService.js           # Servicio de correos
+│       ├── testMail.js               # Prueba de correo
+│       ├── package.json              # Dependencias del servidor
+│       ├── package-lock.json
+│       └── .gitignore                # Archivos a ignorar por Git
+
+├── .gitignore                        # Archivos globalmente ignorados
+├── README.md                         # Descripción general del proyecto
+
 ```
 
 ## 🧠 Sugerencias de diseño aplicadas
@@ -48,8 +79,10 @@ Este proyecto trabajará principalmente con las siguientes ramas:
 ## 🌿 Ramas principales
 
 - `main` — Código estable y listo para producción.
-- `test` — Rama destinada a pruebas y validación antes de pasar a `main`.
-- `docs-gen` — Rama destinada a documentación del desarrollo del proyecto.
+- `angular` — Rama destinada al desarrollo del backend con Angular (anteriormente `test`).
+- `node` — Rama destinada al desarrollo del frontend con Node.js y PostgreSQL.
+- `docs-gen` — Rama destinada a la documentación técnica y funcional del proyecto.
+
 
 
 ### Roles
