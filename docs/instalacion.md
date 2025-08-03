@@ -1,152 +1,140 @@
-# Guía Detallada de Instalación del Proyecto Petly (Bagisto)
 
-Este documento describe paso a paso cómo instalar y poner en funcionamiento el proyecto **Petly**, basado en la plataforma **Bagisto**.
+# PetlyAngular (Versión Extendida en Español)
 
----
+Este proyecto es el frontend del sistema **Petly**, desarrollado con Angular y ubicado en el subdirectorio:
 
-## 📋 Requisitos Previos
+```
+Petly-proyect/petly-angular/
+```
 
-Antes de comenzar, asegúrate de tener los siguientes componentes instalados en tu sistema:
-
-- **XAMPP** con soporte para **PHP 8.2** en adelante
-- **Composer** (administrador de dependencias de PHP)
-- **Git** (control de versiones)
+Forma parte de una arquitectura desacoplada donde el backend se encuentra desarrollado en Node.js/PostgreSQL. Este README te guía paso a paso desde la instalación del entorno hasta pruebas y compilación.
 
 ---
 
-## 1️⃣ Clonar el Repositorio
+## 🖥️ Instalación del Entorno
 
-Abre una terminal (CMD, PowerShell o Git Bash) y ejecuta los siguientes comandos:
+### 🔧 Requisitos Previos
+
+Antes de ejecutar el proyecto, asegúrate de tener instalado:
+
+- Node.js (v18 o superior)
+- Angular CLI
+- Git
+- Navegador web (Chrome recomendado)
+
+### 📥 Instalación de Node.js
+
+#### En Windows
+
+1. Ve a [https://nodejs.org/](https://nodejs.org/) y descarga la versión LTS.
+2. Ejecuta el instalador y sigue las instrucciones.
+3. Verifica la instalación:
+    ```bash
+    node -v
+    npm -v
+    ```
+
+#### En Ubuntu/Debian
 
 ```bash
-git clone https://github.com/isgaar/Petly.git
-cd Petly/Petly-Web
+sudo apt update
+sudo apt install -y curl
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+node -v
+npm -v
 ```
 
-
----
-
-## 2️⃣ Instalar Dependencias del Proyecto
-
-Ejecuta el siguiente comando para instalar las dependencias PHP:
+### 🧰 Instalación de Angular CLI
 
 ```bash
-composer install
+npm install -g @angular/cli
 ```
 
-> Si aparecen errores relacionados con extensiones como `intl`, `gd` o `zip`, realiza lo siguiente:
->
-> 1. Abre el panel de **XAMPP**
-> 2. Ve a `Config` → `php.ini`
-> 3. Asegúrate de que las siguientes líneas **no estén comentadas** (elimina el `;` al inicio si es necesario):
->
-> ```ini
-> extension=gd
-> extension=intl
-> extension=zip
-> ```
->
-> 4. Guarda los cambios y reinicia **Apache**.
-
----
-
-## 3️⃣ Configurar el Archivo `.env`
-
-Copia el archivo de entorno de ejemplo:
+Verifica con:
 
 ```bash
-copy .env.example .env
-```
-
-Edita el archivo `.env` y configura los siguientes valores para la base de datos (configuración por defecto de XAMPP):
-
-```dotenv
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=petly
-DB_USERNAME=root
-DB_PASSWORD=
+ng version
 ```
 
 ---
 
-## 4️⃣ Crear la Base de Datos
+## 🚀 Servidor de Desarrollo
 
-1. Abre el panel de control de **XAMPP**
-2. Inicia el servicio de **MySQL**
-3. Da clic en el botón **Admin**
-4. En **phpMyAdmin**, crea una nueva base de datos llamada:
-
-```sql
-petly
-```
-
----
-
-## 5️⃣ Generar la Clave de Aplicación
-
-Ejecuta el siguiente comando para generar la clave de Laravel:
+1. Clona el repositorio si no lo tienes aún:
 
 ```bash
-php artisan key:generate
+git clone https://github.com/tu-usuario/petly.git
+cd petly/Petly-proyect/petly-angular/
 ```
 
----
-
-## 6️⃣ Migrar Tablas y Completar Instalación
-
-Primero, ejecuta las migraciones:
+2. Instala las dependencias:
 
 ```bash
-php artisan migrate
+npm install
 ```
 
-Luego, si deseas completar la instalación por consola, ejecuta:
+3. Inicia el servidor local:
 
 ```bash
-php artisan bagisto:install
+ng serve
 ```
 
-Sigue las instrucciones y proporciona los datos requeridos como:
+4. Abre tu navegador en:
 
-- Nombre de la tienda
-- Correo del administrador
-- Idioma
-- Zona horaria
+```
+http://localhost:4200/
+```
 
 ---
 
-## 7️⃣ Iniciar el Servidor de Desarrollo
-
-Ejecuta:
+## ⚙️ Generación de Código (Scaffolding)
 
 ```bash
-php artisan serve
+ng generate component nombre-del-componente
 ```
 
-Abre tu navegador y accede a:
+Consulta otras opciones con:
 
+```bash
+ng generate --help
 ```
-http://localhost:8000
-```
-
-¡Listo! La aplicación Petly estará en funcionamiento.
 
 ---
 
-## 🔐 Acceso al Panel de Administración
+## 🛠️ Compilación para Producción
 
-Para acceder al panel de administración dirígete a:
-
-```
-http://localhost:8000/admin/login
+```bash
+ng build
 ```
 
-Inicia sesión usando el correo electrónico y contraseña que configuraste durante la instalación.
+Los archivos quedarán listos en `dist/` para su despliegue.
 
 ---
 
-## ✅ Instalación Finalizada
+## 🧪 Pruebas Unitarias
 
-Ahora puedes comenzar a personalizar y utilizar el sistema Petly según tus necesidades. Si encuentras algún error, revisa cada paso o consulta la documentación oficial de Laravel y Bagisto.
+```bash
+ng test
+```
+
+---
+
+## 🧪 Pruebas E2E
+
+```bash
+ng e2e
+```
+
+⚠️ Angular CLI no trae E2E por defecto. Puedes integrar herramientas como **Cypress** o **Playwright**.
+
+---
+
+## 📚 Recursos Adicionales
+
+- [Guía de Angular CLI](https://angular.dev/tools/cli)
+- [Documentación de Node.js](https://nodejs.org/en/docs/)
+
+---
+
+🛠️ Documento actualizado tras reorganización del proyecto en la rama `angular`, fusionado en `master`. Estructura optimizada para mantener separado frontend y backend.
