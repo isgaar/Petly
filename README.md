@@ -103,12 +103,12 @@ Este proyecto trabajará principalmente con las siguientes ramas:
 
 ### Caso: José Aaron necesita cambiar la vista de login
 
-1. Se posiciona en la rama `test`:
+1. Se posiciona en la rama `angular`:
    ```bash
-   git checkout test
+   git checkout angular
    ```
 
-2. Crea una nueva rama desde `test` con el nombre adecuado:
+2. Crea una nueva rama desde `angular` con el nombre adecuado:
    ```bash
    git checkout -b feat/frontend/vista-login
    ```
@@ -120,9 +120,9 @@ Este proyecto trabajará principalmente con las siguientes ramas:
    git push origin feat/frontend/vista-login
    ```
 
-5. Abre un **Pull Request hacia `test`** para revisión y pruebas.
+5. Abre un **Pull Request hacia `angular`** para revisión y pruebas.
 
-6. Una vez aprobado por el equipo y verificado su funcionamiento, el SCRUM Master puede **fusionar `test` a `main`**.
+6. Una vez aprobado por el equipo y verificado su funcionamiento, el SCRUM Master puede **fusionar `angular` a `main`**.
 
 ---
 
