@@ -37,7 +37,6 @@ Este repositorio contiene los mockups actualizados, junto con observaciones de m
 
 ├── Petly-proyect/                    # Carpeta raíz del desarrollo
 │   ├── petly-angular/                # Código del backend (Angular)
-│   │   ├── .vscode/                  # Configuraciones de VS Code
 │   │   ├── public/                   # Recursos públicos
 │   │   ├── src/                      # Código fuente de Angular
 │   │   ├── angular.json              # Configuración Angular
