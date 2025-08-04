@@ -1,10 +1,10 @@
-# Documentación Técnica – Proyecto **Petly-Web** (Laravel E-commerce de Mascotas)
+# Documentación Técnica – Proyecto **Petly** (Angular + Node Express)
 
 ## 1. Descripción general del proyecto y su propósito
 
-**Petly-Web** es una plataforma web de comercio electrónico orientada a la venta de productos para mascotas y a la promoción de adopciones de animales. El sistema está diseñado principalmente para compradores (clientes finales) y no permite ventas directas entre usuarios, ofreciendo una experiencia intuitiva y eficiente tanto para clientes como para administradores y empleados. En Petly, los usuarios pueden navegar por un catálogo de artículos para mascotas (alimentos, juguetes, accesorios, etc.), agregarlos a un carrito de compras y realizar pedidos en línea. Además, el sitio incluye una sección de **adopción de mascotas**, donde los interesados pueden conocer mascotas disponibles y enviar solicitudes de adopción, facilitando la interacción con refugios o administradores del sitio. El objetivo central del proyecto es **integrar en una sola aplicación** la funcionalidad de tienda en línea para productos de mascotas junto con un sistema de adopción, asegurando a la vez una gestión unificada de usuarios, pedidos, reseñas y procesos administrativos.
+**Petly** es una plataforma web de comercio electrónico orientada a la venta de productos para mascotas y a la promoción de adopciones de animales. El sistema está diseñado principalmente para compradores (clientes finales) y no permite ventas directas entre usuarios, ofreciendo una experiencia intuitiva y eficiente tanto para clientes como para administradores y empleados. En Petly, los usuarios pueden navegar por un catálogo de artículos para mascotas (alimentos, juguetes, accesorios, etc.), agregarlos a un carrito de compras y realizar pedidos en línea. Además, el sitio incluye una sección de **adopción de mascotas**, donde los interesados pueden conocer mascotas disponibles y enviar solicitudes de adopción, facilitando la interacción con refugios o administradores del sitio. El objetivo central del proyecto es **integrar en una sola aplicación** la funcionalidad de tienda en línea para productos de mascotas junto con un sistema de adopción, asegurando a la vez una gestión unificada de usuarios, pedidos, reseñas y procesos administrativos.
 
-En resumen, Petly-Web busca proporcionar un **espacio integral para amantes de las mascotas**, donde puedan adquirir productos y, simultáneamente, encontrar un nuevo miembro peludo de la familia. Esta dualidad de funciones (tienda + adopción) se implementa manteniendo buenas prácticas de desarrollo web (seguridad, rendimiento, usabilidad) y pensando en distintos roles de usuario (clientes, vendedores/empleados y administrador) para cubrir todas las necesidades del sistema.
+En resumen, Petly busca proporcionar un **espacio integral para amantes de las mascotas**, donde puedan adquirir productos y, simultáneamente, encontrar un nuevo miembro peludo de la familia. Esta dualidad de funciones (tienda + adopción) se implementa manteniendo buenas prácticas de desarrollo web (seguridad, rendimiento, usabilidad) y pensando en distintos roles de usuario (clientes, vendedores/empleados y administrador) para cubrir todas las necesidades del sistema.
 
 ## 2. Explicación de la arquitectura MVC implementada
 
@@ -18,9 +18,14 @@ El proyecto Petly-Web está construido sobre el framework **Laravel**, siguiendo
 
 En resumen, Petly-Web aprovecha el patrón MVC de Laravel para mantener la lógica de datos (Modelos), la presentación (Vistas) y el flujo de control (Controladores) bien separados. Esto asegura que, por ejemplo, los cambios en la interfaz (diseño de vistas) no afecten la lógica de negocio, o que la modificación de reglas de negocio en un modelo no rompa directamente las vistas, haciendo el desarrollo más modular y limpio.
 
+
+
 ## 3. Análisis y explicación del flujo de trabajo del sistema
 
 En esta sección se describe **cómo Petly-Web procesa las solicitudes de los usuarios** desde que interactúan con el navegador hasta obtener una respuesta, incluyendo ejemplos específicos de flujos (inicio de sesión, compra de un producto y adopción de una mascota).
+
+&#x20;*Diagrama de casos de uso.*
+![Diagrama de caso de uso](/docs/imgs/DiagramaCDU.png)
 
 ### 3.1 Ciclo de vida de una petición HTTP en Petly-Web
 
@@ -39,6 +44,10 @@ Cuando un usuario realiza una petición en el navegador (por ejemplo, al entrar 
 * **Ciclo continuo**: El navegador del usuario recibe la respuesta (la página HTML), la renderiza para mostrarla. A partir de ahí, el usuario puede realizar nuevas interacciones (clics, formularios), que generarán nuevas peticiones al servidor y repetirán el ciclo descrito.
 
 Este flujo básico se complementa con detalles adicionales: por ejemplo, Laravel tiene un **sistema de caché** que podría servir respuestas más rápidamente en algunos casos, manejo de errores (si ocurre una excepción en el controlador, Laravel mostrará una página de error 500 o personalizada), y el proceso de envío de activos estáticos (CSS/JS) que suelen estar en la carpeta `public/`. En Petly-Web, al ser una aplicación e-commerce, también intervienen aspectos como la **sesión del usuario** (por ejemplo, el carrito de compras está asociado a la sesión del usuario hasta que se confirma el pedido, usando el mecanismo de sesión de Laravel) y posiblemente **cookies** o tokens para recordar al usuario. No obstante, a alto nivel, siempre se sigue la secuencia: *Ruta -> Middleware -> Controlador -> Modelo/BD -> Vista -> Respuesta al cliente*.
+
+
+&#x20;*Diagrama de casos de clases.*
+![Diagrama de caso de clases](/docs/imgs/DiagramaDC.jpg)
 
 ### 3.2 Ejemplo de flujo para **Inicio de Sesión (Login)**
 
@@ -505,4 +514,257 @@ Finalmente, se enumeran algunas recomendaciones y buenas prácticas de cara a la
 
 * **Actualizaciones de paquetes**: Mantener Bagisto y Laravel actualizados a sus últimas versiones (haciendo pruebas en un entorno de ensayo antes). Las actualizaciones traen mejoras de seguridad y rendimiento. Sin embargo, dado que Bagisto es un core grande, se debe tener precaución de no sobrescribir personalizaciones hechas. Usar control de versiones (Git) es indispensable para llevar registro de cambios e integraciones de parches de forma organizada.
 
+## 1. Estructura de carpetas equivalente en Angular y Express
 
+* **Laravel (Blade/Eloquent)**: Tradicionalmente, Laravel separa las **vistas** (Blade) en `resources/views`, los **controladores** en `app/Http/Controllers` y los **modelos** (Eloquent) en `app/Models`. Bagisto (Laravel e-commerce) añade módulos y vistas específicas de tienda en `resources/views/vendor/bagisto` y controladores en su propio espacio.
+* **Angular (frontend SPA)**: El proyecto generado por Angular CLI tiene una carpeta `src/app/` donde se alojan componentes, servicios, modelos y módulos. Por ejemplo, se pueden organizar en subdirectorios como `core/`, `data/`, `layout/`, `modules/`, `shared/`. Cada **componente Angular** (`.ts` + `.html`) reemplaza una vista Blade, y los **servicios Angular** encapsulan llamadas HTTP al backend. Por ejemplo:
+
+  ```text
+  src/
+    app/
+      core/         (servicios e interceptores globales)
+      shared/       (componentes y utilidades compartidas)
+      modules/      (módulos por funcionalidad: products, cart, auth, etc.)
+      models/       (interfaces o clases de datos)
+      components/   (componentes UI genéricos)
+    assets/
+    environments/
+  ```
+* **Express (backend API)**: Siguiendo buenas prácticas de Node/Express, el servidor debe reflejar que es un **API REST**. Se pueden crear carpetas de primer nivel como **`/api`** (endpoints funcionales), **`/core`** (middlewares del framework) y **`/shared`** (código reutilizable: utilidades, acceso a BD). Por ejemplo:
+
+  ```text
+  backend/
+    src/
+      api/
+        controllers/
+        routes/
+        services/
+      core/
+        middleware/
+        logger.js
+        app.js
+      shared/
+        models/       (modelos Sequelize/Mongoose)
+        utils/
+        config/
+    app.js            (inicia servidor y conecta rutas)
+  ```
+
+  En esta estructura, cada recurso (productos, usuarios, pedidos, etc.) tiene sus **routes** y **controllers** correspondientes. Los **modelos de datos** (Ejemplo: Sequelize o Mongoose) viven en `/shared/models`.
+
+En resumen, *vistas Blade* → *componentes/templates Angular*; *controladores Laravel* → *controllers/rutas Express*; *modelos Eloquent* → *modelos Sequelize/Mongoose*; *routes Laravel* (web/api) → *rutas Express definidas con `express.Router()`*. Angular maneja el routing del cliente (con sus propios *guards*), mientras Express expone rutas JSON en `/api/*`.
+
+## 2. Migración del patrón MVC a Arquitectura desacoplada (SPA + API REST)
+
+En Laravel MVC, el servidor PHP renderea HTML con Blade y maneja estado (sesiones, control de flujo) de forma monolítica. Al migrar a Angular+Express:
+
+* **Separación de responsabilidades**: Angular (SPA) se encarga del *frontend* (UI, navegación del usuario, validaciones en cliente) mientras Express gestiona el *backend* (lógica de negocio, acceso a base de datos, autenticación). No hay renders de vistas en servidor; en su lugar Angular consume datos via HTTP.
+* **Comunicación mediante HTTP/REST**: Todos los intercambios de datos se realizan con llamadas RESTful. El frontend invoca APIs JSON (por ejemplo `/api/products`, `/api/cart`) usando `HttpClient`. Los controladores de Express devuelven JSON (por ejemplo, lista de productos, confirmación de pedido). Se recomienda respetar convenciones REST (GET para obtener, POST para crear, etc.).
+* **Ejemplo de flujo**: Cuando el usuario ingresa a la ruta `/catalogo` en Angular, el componente correspondiente solicita los productos con `productService.getProducts()`, que hace un `GET /api/products` al servidor. Express recibe la petición, ejecuta su controller (por ejemplo, `ProductController.list`) usando el modelo de datos, y devuelve un array JSON. Angular recibe la respuesta y la muestra en la interfaz (p. ej. con `*ngFor`).
+* **Buenas prácticas**: Mantener el API *sin estado* (stateless), usar códigos HTTP apropiados, validar en ambos lados (cliente y servidor), y versionar las rutas si es necesario. También conviene usar `HttpInterceptor` en Angular para adjuntar JWT de autenticación en cada petición, y habilitar CORS en Express para permitir origen cruzado.
+
+La comunicación desacoplada simplifica escalabilidad y facilita usar tecnologías modernas en cada lado. Angular maneja el enrutamiento propio (por ejemplo `RouterModule` en `app-routing.module.ts`), separado de las rutas del API.
+
+## 3. Implementación de funcionalidades clave
+
+Cada funcionalidad de Petly-Web se implementa coordinando Angular (UI/estado local) con Express (DB/negocio):
+
+* **Catálogo de productos (listar, filtrar, detalles)**:
+
+  * *Backend (Express)*: Modelo `Product` (Sequelize) con campos (id, nombre, precio, stock, etc.). En `ProductController` se define, por ejemplo, `list(req, res)` que lee parámetros de filtro (`req.query`), consulta `Product.findAll(...)` y responde con `res.json(products)`. Rutas típicas:
+
+    ```js
+    // Express (routes/product.js)
+    router.get('/products', productController.list);
+    router.get('/products/:id', productController.show);
+    ```
+  * *Frontend (Angular)*: `ProductService` inyecta `HttpClient` y expone métodos `getProducts(filters)` y `getProductById(id)` que hacen GET al API. El componente `ProductListComponent` suscribe ese servicio, almacena los productos en una variable, y usa `*ngFor="let p of products"` en el template para listarlos. Para filtros, puede enviarlos como parámetros `HttpParams`. Al hacer clic en un producto, Angular navega a una ruta de detalles donde `ProductDetailComponent` llama a `getProductById`.
+
+* **Carrito de compras**:
+
+  * *Frontend*: Se crea un `CartService` que mantiene una lista de artículos (por ejemplo en un arreglo o en `localStorage`). Al agregar/quitar, el servicio actualiza el estado local y opcionalmente llama a la API si el usuario está autenticado.
+  * *Backend*: Si se desea persistencia, creamos modelo `Cart` (pertenece a un usuario) y `CartItem`. Endpoints: `GET /api/cart` (obtiene estado del carrito), `POST /api/cart/items` (agrega ítem), `DELETE /api/cart/items/:id` (elimina). Los controladores gestionan la creación y borrado en la base de datos. Al mismo tiempo, el frontend actualiza la UI en tiempo real (por ejemplo, con un componente sticky de carrito que suscribe el servicio).
+
+* **Checkout (validaciones y flujo de pedido)**:
+
+  * *Frontend*: Formulario reactivo (Angular Reactive Form) para datos del cliente (dirección, método de pago). Se usan validaciones integradas (`Validators.required`, `Validators.email`, etc.). Al enviar, se invoca `OrderService.checkout(orderData)` (HTTP POST).
+  * *Backend*: Ruta `POST /api/checkout` que recibe los datos del pedido. Se validan los campos (p. ej. usando *express-validator*). Luego se crea una transacción: calcula total, verifica stock con `Product.update(...)`, genera registros `Order` y `OrderItems`, y retorna confirmación al cliente (JSON con detalles de la orden).
+
+* **Gestión de usuarios con roles**:
+
+  * *Modelo*: Tabla/colección `User` con campos (id, nombre, email, password, roleId). Tabla `Role` con roles (`cliente`, `vendedor`, `administrador`). En Sequelize: `User.belongsTo(Role)`, `Role.hasMany(User)`.
+  * *Backend*: Controladores de usuario (`AuthController` para registro/login, `UserController` para perfil). En los endpoints se verifica el rol del usuario (p.ej. solo admin puede crear vendedores). Se usan middlewares de autorización (ver abajo).
+  * *Frontend*: Formularios de registro/login con Reactive Forms, consumiendo `/api/register` y `/api/login`. Dependiendo del rol devuelto, Angular muestra diferentes vistas (por ejemplo, un dashboard de administrador). Se definen rutas protegidas con guards basados en rol.
+
+* **Adopciones de mascotas**:
+
+  * *Frontend*: Componente `AdoptionFormComponent` con formulario (Reactive Form) donde el usuario solicita la adopción de una mascota. Al enviar, se llama a `AdoptionService.requestAdoption(adoptionData)`.
+  * *Backend*: Modelo `AdoptionRequest` con `userId`, `petId`, `status`, `fechaSolicitud`. Rutas: `POST /api/adoptions` (crea solicitud), `GET /api/adoptions` (lista para admin). En `AdoptionController` se maneja la lógica, asignando estado inicial (p. ej. “pendiente”). Un administrador puede aprobar/rechazar mediante rutas (p.ej. `PUT /api/adoptions/:id/approve`).
+
+* **Reseñas de productos**:
+
+  * *Modelo*: `Review` con `userId`, `productId`, `rating`, `comment`. Relacionado con `Product` y `User`.
+  * *Backend*: Endpoints `GET /api/products/:id/reviews` y `POST /api/products/:id/reviews`. En `ReviewController` se guardan las reseñas (a menudo tras validar que el usuario compró el producto).
+  * *Frontend*: En la página de detalle de producto, se muestra la lista de reseñas (obtenidas con el servicio), y un formulario para añadir una nueva reseña.
+
+* **Autenticación (login, registro y 2FA)**:
+
+  * *Backend*: Se genera un JWT usando `jsonwebtoken` en `/api/login` al validar email/clave (en Laravel esto lo hacía el guard auth). El JWT (según RFC 7519) contiene la identidad del usuario firmada. Para 2FA, tras credenciales válidas se puede enviar un código de un solo uso por email (usando **Nodemailer**) o SMS (**Twilio**), y validar ese código antes de emitir el JWT definitivo. Se crean rutas adicionales, p. ej. `POST /api/2fa/verify`.
+  * *Frontend*: En el login se solicita email/clave. Si se activa 2FA, se muestra un segundo formulario para el código. El token JWT resultante se almacena en `localStorage` o `SessionStorage`. Un interceptor HTTP en Angular inyecta el header `Authorization: Bearer <token>` en cada petición subsecuente.
+
+* **Middleware de protección y roles**:
+
+  * *Express*: Se implementan middlewares como `authenticateToken(req,res,next)` para verificar y decodificar el JWT (usando la clave secreta). Otro middleware `authorizeRole(role)` verifica el campo `req.user.role`. Ejemplo:
+
+    ```js
+    function authenticate(req, res, next) {
+      const token = req.header('Authorization')?.split(' ')[1];
+      if (!token) return res.status(401).json({error: 'No token'});
+      // verifica token y extrae payload
+      jwt.verify(token, SECRET, (err, user) => {
+        if (err) return res.status(403).json({error: 'Token inválido'});
+        req.user = user; next();
+      });
+    }
+    function isAdmin(req, res, next) {
+      if (req.user.role !== 'administrador') return res.status(403).json({error: 'Acceso denegado'});
+      next();
+    }
+    ```
+
+    Se aplican sobre rutas sensibles: por ejemplo, `router.get('/admin/orders', authenticate, isAdmin, orderController.list)`.
+  * *Angular*: Se crean **guards** (`AuthGuard`, `AdminGuard`) implementando `CanActivate`. En ellos se chequea si el usuario está logueado (`authService.isLoggedIn()`) y si tiene el rol apropiado. Por ejemplo:
+
+    ```ts
+    canActivate(route: ActivatedRouteSnapshot): boolean {
+      if (!this.auth.isLoggedIn()) { this.router.navigate(['/login']); return false; }
+      if (this.auth.getUserRole() !== 'administrador') {
+        this.router.navigate(['/unauthorized']); return false;
+      }
+      return true;
+    }
+    ```
+
+    Estos guards se asocian en el enrutador Angular para proteger componentes (p.ej. ruta `/admin`).
+
+## 4. Base de datos equivalente: modelos, relaciones y migraciones
+
+Si antes Laravel usaba migrations y Eloquent con una base SQL, ahora podemos usar **Sequelize (ORM para SQL)** o **Mongoose (ODM para MongoDB)**. Asumamos SQL con Sequelize:
+
+* **Modelos (Sequelize)**: Por ejemplo, para productos:
+
+  ```js
+  // models/Product.js
+  const Product = sequelize.define('Product', {
+    id:   { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: DataTypes.STRING,
+    price: DataTypes.DECIMAL,
+    stock: DataTypes.INTEGER,
+    // ... otros campos ...
+  });
+  ```
+
+  De forma similar definimos `User`, `Role`, `Order`, `OrderItem`, `Cart`, `CartItem`, `AdoptionRequest`, `Review`, etc. Cada definición reemplaza al modelo Eloquent de Laravel.
+
+* **Relaciones**: Se usan métodos de Sequelize:
+
+  * `User.belongsTo(Role); Role.hasMany(User);` (usuario → rol).
+  * `User.hasMany(Order); Order.belongsTo(User);` y `Order.hasMany(OrderItem); OrderItem.belongsTo(Order); OrderItem.belongsTo(Product);`.
+  * `Product.belongsToMany(Category, { through: ProductCategory }); Category.belongsToMany(Product, { through: ProductCategory });` (si hay categorías).
+  * `User.hasOne(Cart); Cart.belongsTo(User); Cart.hasMany(CartItem); CartItem.belongsTo(Cart); CartItem.belongsTo(Product);`.
+  * `Product.hasMany(Review); Review.belongsTo(Product); Review.belongsTo(User);`.
+  * `User.hasMany(AdoptionRequest); AdoptionRequest.belongsTo(User);` (además de una relación con `Pet` si se modela).
+
+* **Migraciones equivalentes**: Con **sequelize-cli** creamos archivos en `/migrations`. Por ejemplo:
+
+  ```js
+  // migrations/20250101-create-users.js
+  module.exports = {
+    up: async (queryInterface, DataTypes) => {
+      await queryInterface.createTable('Users', {
+        id:    { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+        name:  DataTypes.STRING,
+        email: { type: DataTypes.STRING, unique: true },
+        password: DataTypes.STRING,
+        roleId: DataTypes.INTEGER,
+        createdAt: DataTypes.DATE, updatedAt: DataTypes.DATE
+      });
+    },
+    down: async (queryInterface) => {
+      await queryInterface.dropTable('Users');
+    }
+  };
+  ```
+
+  Cada migración en Laravel tiene su equivalente en Sequelize. Al correr `sequelize db:migrate`, se crean las tablas necesarias. Si se usa Mongo/Mongoose, en lugar de migraciones se definen esquemas y Mongo los crea dinámicamente al insertar.
+
+* **Estructura de tablas**: En SQL habrá tablas como `users`, `roles`, `products`, `categories`, `orders`, `order_items`, `carts`, `cart_items`, `adoption_requests`, `reviews`, etc., con sus claves foráneas. En Mongo se puede anidar (e.g. subdocumentos) o referenciar, según diseño. El objetivo es replicar la lógica de relaciones de la aplicación original.
+
+## 5. Integración frontend-backend
+
+Para conectar Angular y Express:
+
+* **Servicios Angular (`HttpClient`)**: Se generan servicios (`ng generate service`) que inyectan `HttpClient`. Por ejemplo, un servicio de productos:
+
+  ```ts
+  @Injectable({ providedIn: 'root' })
+  export class ProductService {
+    constructor(private http: HttpClient) { }
+    getProducts(filters: any): Observable<Product[]> {
+      return this.http.get<Product[]>('/api/products', { params: filters });
+    }
+    getProductById(id: number): Observable<Product> {
+      return this.http.get<Product>(`/api/products/${id}`);
+    }
+  }
+  ```
+
+  Este patrón (inyectar `HttpClient` y exponer métodos que retornan `Observable` desde peticiones HTTP) es estándar en Angular. Cada componente llama al servicio apropiado y subscribe para obtener datos. Para acelerar el desarrollo, se recomienda definir rutas base en `environment.ts` (p.ej. `apiUrl`) y usar consts.
+
+* **Formularios reactivos (Reactive Forms)**: Angular ofrece un enfoque modelo-reactivo para formularios. Por ejemplo, para el login se define en el componente:
+
+  ```ts
+  loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required]
+  });
+  ```
+
+  En la plantilla, se enlazan controles con `[formControl]`. Al someter, se llama `authService.login(this.loginForm.value)`. Este método a su vez usa `HttpClient.post` a `/api/login`. La validación (requeridos, formato email, minLength, etc.) se gestiona con las propiedades `validators`.
+
+* **Guards de rutas**: En `app-routing.module.ts` se aplican guards a rutas Angular para roles o autenticación. Por ejemplo:
+
+  ```ts
+  { path: 'admin', component: AdminDashboard, canActivate: [AuthGuard, AdminGuard] }
+  ```
+
+  donde `AuthGuard` verifica que esté autenticado y `AdminGuard` que tenga rol administrador. Estos redirigen o bloquean antes de cargar el componente.
+
+* **Intercepciones HTTP**: Se configura un `HttpInterceptor` en Angular que añade el JWT a cada petición saliente (`Authorization: Bearer <token>`), así el backend Express puede autenticar cada ruta protegida de forma transparente.
+
+* **Flow de datos**: En todos estos flujos, Angular y Express se comunican con JSON. Ejemplo: al añadir un producto al carrito, Angular llama `cartService.addItem(product, qty)` → que hace `POST /api/cart/items` con el producto y cantidad. Express recibe, almacena en BD y responde con estado 200 o el carrito actualizado.
+
+La clave es diseñar bien las *rutas API* y asegurar que Angular consuma esas rutas mediante servicios. Un interceptor Angular (p.ej. para manejar errores 401) mejora la integración.
+
+## 6. Extras: Seguridad, Buenas Prácticas y Deploy
+
+* **Seguridad y validación**:
+
+  * *Rate Limiting*: Es recomendable usar paquetes como `express-rate-limit` para limitar peticiones repetidas y evitar ataques de fuerza bruta o DDoS. La limitación de tasa ayuda a mantener la estabilidad y seguridad de la app. Por ejemplo, se puede establecer un límite de 100 peticiones por IP por hora para rutas sensibles (login, registro).
+  * *Validación de datos*: Tanto en Angular (formularios) como en Express se deben validar todos los datos de entrada. En Express se puede usar `express-validator` o esquemas con Joi para sanitizar y validar antes de procesar.
+  * *Sanitización*: Escapar caracteres peligrosos o limpiar inputs evita inyección SQL/NoSQL e XSS. Con ORMs como Sequelize y Mongoose se minimiza el riesgo de inyecciones manuales.
+  * *CORS*: Habilitar CORS en Express (p. ej. con `app.use(cors())`) para permitir que el dominio donde corre Angular acceda al API. Configurar orígenes permitidos y cabeceras autorizadas.
+  * *Cabeceras de seguridad*: Usar `helmet` en Express para configurar cabeceras HTTP seguras. Siempre servir Angular desde un servidor confiable (por ejemplo, Vercel o un CDN) y el API en HTTPS.
+
+* **Configuración de entorno**:
+
+  * *Angular CLI*: Se inicia con `ng new petly-web` y se generan componentes/servicios con comandos (`ng generate component`, `ng generate service`). Se definen variables en `environments/environment.ts` para URLs de API, claves de Google Maps, etc. Angular 16+ sugiere usar standalone components opcionalmente.
+  * *Express boilerplate*: Se puede iniciar con `npm init` y `npm install express`. Crear `app.js` donde se inicializa Express, se carga `app.use(express.json())`, se configuran rutas importándolas de `/api/routes`. Se usa `dotenv` para variables (PUERTO, DB\_URL, JWT\_SECRET).
+  * *Monorepo (opcional)*: Organizar el repositorio en dos carpetas principales (`frontend/` y `backend/`) con sus propias dependencias. Herramientas como Nx o Yarn Workspaces ayudan a compartir código (modelos comunes, interfaces). Railway por ejemplo soporta monorepos aislados, permitiendo definir carpetas raíz separadas.
+
+* **Deploy sugerido**:
+
+  * **Monorepo aislado** (una carpeta `frontend` con Angular y otra `backend` con Express). Cada parte se despliega por separado: Angular puede ir a Vercel (optimizado para SPAs estáticas) y Node/Express a Railway, Heroku, AWS (ECS/EC2) o un VPS. Railway docs mencionan cómo desplegar un monorepo definiendo directorios raíz.
+  * En Vercel se configuraría el proyecto apuntando a `frontend/dist` como directorio público.
+  * **Alternativa**: Servir Angular y Express juntos en un VPS o contenedor Docker, si se desea. Sin embargo, la tendencia es desacoplar dominios/subdominios: p.ej. `app.petly.com` (Angular) y `api.petly.com` (Express).
+  * **Variables de entorno**: Asegurar que en producción estén configuradas (datos de BD, secretos JWT, APIs de email/SMS). Usar CI/CD para builds (`ng build --prod`) y deploy continuo.
