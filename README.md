@@ -56,8 +56,6 @@ Este repositorio contiene los mockups actualizados, junto con observaciones de m
 │       ├── package.json              # Dependencias del servidor
 │       ├── package-lock.json
 │       └── .gitignore                # Archivos a ignorar por Git
-
-├── .gitignore                        # Archivos globalmente ignorados
 ├── README.md                         # Descripción general del proyecto
 
 ```
