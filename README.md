@@ -14,11 +14,15 @@ Este repositorio contiene los mockups actualizados, junto con observaciones de m
 
 ## 👨‍💻 Equipo desarrollador
 
-- Andrade Carbajal Jesús Ricardo  
-- Alvizar Martínez Alexis  
-- Hernández Rodríguez José Aarón  
-- Ramírez Vega Iosef Yamil  
-- Gaspar Cruz Ismael  
+- Alvizar Martínez Alexis
+
+- Andrade Carbajal Jesús Ricardo
+
+- Gaspar Cruz Ismael
+
+- Hernández Rodríguez José Aarón
+
+- Ramírez Vega Iosef Yami  
 
 ## 📁 Estructura del repositorio
 
