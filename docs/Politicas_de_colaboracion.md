@@ -1,9 +1,10 @@
 # Políticas de colaboración y flujo de trabajo en Petly
 
-## 🌿 Ramas principales
 - `main` — Código estable y listo para producción.
-- `test` — Rama destinada a pruebas y validación antes de pasar a main.
-- `docs-gen` — Rama destinada a documentación del desarrollo del proyecto.
+- `angular` — Rama destinada al desarrollo del backend con Angular (anteriormente `test`).
+- `node` — Rama destinada al desarrollo del frontend con Node.js y PostgreSQL.
+- `docs-gen` — Rama destinada a la documentación técnica y funcional del proyecto.
+
 
 ## 📌 Políticas de Merge
 
