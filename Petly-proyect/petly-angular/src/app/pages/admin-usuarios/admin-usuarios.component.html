@@ -1,0 +1,88 @@
+<div class="petly-container">
+  <h2 class="petly-titulo">Administrar usuarios</h2>
+  <button routerLink="/admin" class="petly-boton-link">🔗 Ir a Admin</button>
+
+  <!-- Formulario de agregar/editar usuario -->
+  <div *ngIf="mostrarFormulario">
+    <h3 class="petly-subtitulo">{{ esEdicion ? 'Editar Usuario' : 'Registrar nuevo usuario' }}</h3>
+    <form [formGroup]="usuarioForm" (ngSubmit)="guardarUsuario()">
+
+      <label class="petly-label">Nombre</label>
+      <input formControlName="nombre" type="text" class="petly-input" />
+
+      <label class="petly-label">Primer Apellido</label>
+      <input formControlName="primer_apellido" type="text" class="petly-input" />
+
+      <label class="petly-label">Segundo Apellido</label>
+      <input formControlName="segundo_apellido" type="text" class="petly-input" />
+
+      <label class="petly-label">CURP</label>
+      <input formControlName="curp" type="text" class="petly-input" />
+
+      <label class="petly-label">Correo</label>
+      <input formControlName="correo" type="email" class="petly-input" />
+
+      <label class="petly-label">Contraseña</label>
+      <input formControlName="contrasena" type="password" class="petly-input" />
+
+      <label class="petly-label">Rol</label>
+      <select formControlName="rol" class="petly-input">
+        <option value="Cliente">Cliente</option>
+        <option value="Empleado">Empleado</option>
+        <option value="Administrador">Administrador</option>
+      </select>
+
+      <div class="acciones">
+        <button type="submit" class="petly-boton">
+          {{ esEdicion ? 'Guardar Cambios' : 'Registrar Usuario' }}
+        </button>
+        <button type="button" class="petly-boton-secundario" (click)="cancelar()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Tabla de usuarios -->
+  <div *ngIf="!mostrarFormulario">
+    <div class="petly-busqueda">
+      <input [(ngModel)]="filtro" placeholder="Buscar por nombre o correo" class="petly-input" />
+    </div>
+
+    <table class="petly-tabla">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido Paterno</th>
+          <th>Apellido Materno</th>
+          <th>CURP</th>
+          <th>Correo</th>
+          <th>Contraseña</th>
+          <th>Sexo</th>
+          <th>Fecha Nac.</th>
+          <th>Estado Nac.</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuariosFiltrados">
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.primer_apellido }}</td>
+          <td>{{ usuario.segundo_apellido }}</td>
+          <td>{{ usuario.curp }}</td>
+          <td>{{ usuario.correo }}</td>
+          <td>{{ usuario.contrasena }}</td>
+          <td>{{ usuario.sexo }}</td>
+          <td>{{ usuario.fecha_nacimiento | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ usuario.estado_nacimiento }}</td>
+          <td>{{ usuario.rol }}</td>
+          <td>
+            <button class="petly-accion editar" (click)="editarUsuario(usuario)">✏️</button>
+            <button *ngIf="usuario.id_usuario != null" (click)="eliminarUsuario(usuario.id_usuario)">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button (click)="mostrarFormularioAgregar()" class="petly-boton mt-4">Agregar usuario</button>
+  </div>
+</div>

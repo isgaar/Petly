@@ -1,0 +1,18 @@
+<div class="petly-container" *ngIf="detalle">
+  <h2 class="petly-titulo">{{ detalle.nombre }}</h2>
+  <img *ngIf="detalle.imagen" [src]="detalle.imagen" alt="{{ detalle.nombre }}" />
+  <p *ngIf="detalle.descripcion">{{ detalle.descripcion }}</p>
+
+  <ng-container *ngIf="tipo === 'producto'">
+    <p><strong>Precio:</strong> ${{ detalle.precio }}</p>
+    <button class="petly-boton">Agregar a la carreola</button>
+  </ng-container>
+
+  <ng-container *ngIf="tipo === 'mascota'">
+    <p><strong>Edad:</strong> {{ detalle.edad }} años</p>
+    <p><strong>Tipo:</strong> {{ detalle.tipo }}</p>
+    <button class="petly-boton">Adoptar</button>
+  </ng-container>
+</div>
+
+<div *ngIf="error" class="petly-error">{{ error }}</div>

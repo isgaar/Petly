@@ -1,0 +1,15 @@
+<div class="petly-container">
+  <h2 class="petly-titulo">Mascotas en adopción</h2>
+<button routerLink="/home" class="petly-boton-link volver-home">← Volver al inicio</button>
+
+  <div class="petly-grid">
+    <div *ngFor="let mascota of mascotas" class="producto-card">
+<img *ngIf="mascota.imagen" [src]="backendURL + mascota.imagen" [alt]="mascota.nombre" class="imagen-ajustada" />
+      <h3>{{ mascota.nombre }}</h3>
+      <p>{{ mascota.descripcion }}</p>
+      <p><strong>{{ mascota.tipo }}</strong> - {{ mascota.edad }} años</p>
+      <button class="petly-boton" (click)="agregarMascota(mascota.id)">Agregar a la carreola</button>
+      <button class="petly-boton petly-secundario" (click)="verDetalle(mascota.id)">Ver más</button>
+    </div>
+  </div>
+</div>

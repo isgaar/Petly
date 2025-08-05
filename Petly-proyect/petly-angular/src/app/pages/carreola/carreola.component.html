@@ -1,0 +1,52 @@
+<div class="petly-container">
+<h2 class="petly-titulo">Tu carreola</h2>
+<p class="petly-subtexto">Usuario: <strong>{{ nombreUsuario }}</strong></p>
+<button routerLink="/home" class="petly-boton-link volver-home">← Volver al inicio</button>
+
+  <div *ngIf="carreola.length === 0">
+    <p>No hay elementos en tu carreola.</p>
+  </div>
+
+  <div *ngIf="carreola.length > 0">
+    <h3>Productos</h3>
+    <div class="petly-grid">
+      <div *ngFor="let item of productos" class="producto-card">
+        <img class="imagen-ajustada"*ngIf="item.imagen" [src]="backendURL + item.imagen" [alt]="item.nombre" />
+        <h4>{{ item.nombre }}</h4>
+        <p>{{ item.descripcion }}</p>
+        <p><strong>${{ item.precio }}</strong></p>
+        <p>Cantidad: {{ item.cantidad }}</p>
+        <button class="petly-boton-eliminar" (click)="eliminarItem(item.id)">Eliminar</button>
+
+      </div>
+    </div>
+
+    <h3>Mascotas</h3>
+    <div class="petly-grid">
+      <div *ngFor="let item of mascotas" class="producto-card">
+        <img class="imagen-ajustada"*ngIf="item.imagen" [src]="backendURL + item.imagen" [alt]="item.nombre" />
+        <h4>{{ item.nombre }}</h4>
+        <p>{{ item.descripcion }}</p>
+        <p><strong>{{ item.tipo }}</strong> - {{ item.edad }} años</p>
+        <button class="petly-boton-eliminar" (click)="eliminarItem(item.id)">Eliminar</button>
+
+      </div>
+
+      <div class="petly-resumen">
+  <h3>Resumen</h3>
+  <p>Total de productos: {{ totalProductos }} artículos</p>
+  <p>Total de mascotas: {{ totalMascotas }}</p>
+  <p><strong>Total a pagar: ${{ totalGeneral }}</strong></p>
+
+    <button class="petly-boton-eliminar" (click)="vaciarCarreola()">Vaciar carreola 🧹</button>
+
+</div>
+
+<div *ngIf="carreola.length > 0" class="acciones-carreola mt-4">
+  <button class="petly-boton" (click)="procederAlPago()">Proceder al pago</button>
+</div>
+
+
+    </div>
+  </div>
+</div>

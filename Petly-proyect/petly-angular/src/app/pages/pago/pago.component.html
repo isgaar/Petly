@@ -1,0 +1,17 @@
+<div class="petly-container">
+  <h2 class="petly-titulo">Resumen de pago</h2>
+  <p><strong>Usuario:</strong> {{ nombreUsuario }}</p>
+  <p><strong>Total a pagar:</strong> ${{ total }}</p>
+  <p><strong>Referencia CLABE:</strong> {{ clabe }}</p>
+
+  <button (click)="descargarRecibo()" class="petly-boton">Descargar recibo PDF</button>
+
+  <h3 class="petly-subtitulo mt-4">Subir comprobante</h3>
+  <input type="file" (change)="onFileSelected($event)" accept="image/*,.pdf" class="petly-input" />
+  <button (click)="subirComprobante()" class="petly-boton" [disabled]="!comprobante">Subir comprobante</button>
+
+  <div *ngIf="mensaje" class="success mt-2">{{ mensaje }}</div>
+  <div *ngIf="error" class="petly-error mt-2">{{ error }}</div>
+
+  <button class="petly-boton-link mt-4" routerLink="/carreola">← Volver a carreola</button>
+</div>

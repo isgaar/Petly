@@ -1,0 +1,21 @@
+.estatus {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.estatus.aprobado {
+  color: white;
+  background-color: #28a745; /* verde */
+}
+
+.estatus.rechazado {
+  color: white;
+  background-color: #dc3545; /* rojo */
+}
+
+.estatus.pendiente {
+  color: black;
+  background-color: #ffc107; /* amarillo */
+}

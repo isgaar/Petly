@@ -1,0 +1,15 @@
+<div class="petly-container">
+  <img src="assets/logo.png" alt="Petly" class="petly-logo" />
+  <h2 class="petly-titulo">Panel Administrativo</h2>
+  <p class="petly-subtexto">¿Qué deseas gestionar?</p>
+
+  <div class="petly-grid">
+    <button class="petly-boton" (click)="irAProductos()">Gestionar productos</button>
+    <button class="petly-boton" (click)="irAMascotas()">Gestionar mascotas</button>
+    <button class="petly-boton" (click)="irAUsuarios()">Gestionar usuarios</button>
+    <button class="petly-boton" (click)="irACategorias()">Gestionar categorías</button>
+    <button class="petly-boton" (click)="irAPagos()">Gestionar pagos</button>
+
+    <button class="petly-boton petly-secundario" (click)="cerrarSesion()">Cerrar sesión</button>
+  </div>
+</div>

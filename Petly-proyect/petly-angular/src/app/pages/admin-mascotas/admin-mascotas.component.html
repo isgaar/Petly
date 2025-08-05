@@ -1,0 +1,77 @@
+<div class="petly-container">
+  <h2 class="petly-titulo">Administrar mascotas</h2>
+  <button routerLink="/admin/categorias" class="petly-boton-link">🔗 Ir a categorías</button>
+  <button routerLink="/admin" class="petly-boton-link">🔗 Ir a Admin</button>
+
+
+  
+
+  <!-- Formulario para agregar/editar mascota -->
+  <div *ngIf="mostrarFormulario">
+    <h3 class="petly-subtitulo">{{ editandoMascota ? 'Editar mascota' : 'Registrar nueva mascota' }}</h3>
+    <form [formGroup]="mascotaForm" (ngSubmit)="registrarMascota()" enctype="multipart/form-data">
+
+      <label class="petly-label">Nombre</label>
+      <input type="text" formControlName="nombre" class="petly-input" />
+
+      <label class="petly-label">Edad</label>
+      <input type="number" formControlName="edad" class="petly-input" />
+
+      <label class="petly-label">Tipo</label>
+      <select formControlName="tipo" class="petly-input">
+        <option value="" disabled selected>Selecciona tipo</option>
+        <option *ngFor="let categoria of categorias" [value]="categoria.nombre">{{ categoria.nombre }}</option>
+      </select>
+
+      <label class="petly-label">Descripción</label>
+      <textarea formControlName="descripcion" class="petly-input"></textarea>
+
+      <label class="petly-label">Imagen (archivo)</label>
+      <input type="file" (change)="onFileSelected($event)" class="petly-input" />
+
+      <button type="submit" [disabled]="mascotaForm.invalid" class="petly-boton">
+        {{ editandoMascota ? 'Actualizar mascota' : 'Registrar mascota' }}
+      </button>
+    </form>
+
+    <div *ngIf="mensaje" class="success">{{ mensaje }}</div>
+    <div *ngIf="error" class="petly-error">{{ error }}</div>
+  </div>
+
+  <!-- Tabla de mascotas -->
+  <div *ngIf="!mostrarFormulario">
+    <div class="petly-busqueda">
+      <input [(ngModel)]="filtro" placeholder="Buscar por nombre o tipo" class="petly-input" />
+    </div>
+
+    <table class="petly-tabla">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Tipo</th>
+          <th>Descripción</th>
+          <th>Imagen</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mascota of mascotasFiltradas">
+          <td>{{ mascota.nombre }}</td>
+          <td>{{ mascota.edad }}</td>
+          <td>{{ mascota.tipo }}</td>
+          <td>{{ mascota.descripcion }}</td>
+          <td>
+            <img *ngIf="mascota.imagen" [src]="'http://localhost:3000' + mascota.imagen" alt="foto" width="50" />
+          </td>
+          <td>
+            <button class="petly-accion eliminar" (click)="eliminarMascota(mascota.id)">🗑️</button>
+            <button class="petly-accion editar" (click)="editarMascota(mascota)">✏️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button (click)="mostrarFormularioAgregar()" class="petly-boton mt-4">Agregar mascota</button>
+  </div>
+</div>
