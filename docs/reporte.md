@@ -786,3 +786,20 @@ git commit -m "docs: se agregó documentación técnica del sistema Petly incluy
 git add docs/petly-documentacion.md
 git commit -m "docs: agregado archivo de documentación técnica general de Petly en docs/petly-documentacion.md"
 
+git add .
+git commit -m "docs: documentación técnica extendida para Petly con seguridad, buenas prácticas y opciones de despliegue"
+
+Se amplió la documentación técnica de Petly con una nueva sección sobre aspectos avanzados del desarrollo, incluyendo:
+
+- Buenas prácticas de seguridad (rate limiting, validación de datos, sanitización, CORS, cabeceras seguras con Helmet)
+- Configuración técnica recomendada para Angular y Express (uso de Angular CLI, estructura base de Express, entorno .env)
+- Opciones de arquitectura de monorepo para proyectos combinados frontend/backend
+- Sugerencias para despliegue profesional: Vercel (frontend Angular) y Railway/Heroku para backend Node/Express
+- Uso de variables de entorno en producción, separación por dominios/subdominios y CI/CD para builds y deployment
+
+Esta ampliación complementa las secciones anteriores del documento que describen el patrón MVC en Laravel y los flujos de interacción (inicio de sesión, compra, adopción), generando una visión integral del sistema.
+
+El archivo actualizado es `docs/petly-documentacion.md`, y servirá como base sólida para entregables académicos, revisión de pares o desarrollo colaborativo profesional.
+
+
+
