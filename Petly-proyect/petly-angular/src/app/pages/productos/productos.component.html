@@ -1,17 +1,16 @@
 <div class="petly-container">
   <h2 class="petly-titulo">Productos disponibles</h2>
+<button routerLink="/home" class="petly-boton-link volver-home">← Volver al inicio</button>
 
   <div class="petly-grid">
     <div *ngFor="let producto of productos" class="producto-card">
-      <img [src]="producto.imagen" [alt]="producto.nombre" class="producto-imagen" />
+      <img [src]="backendURL + producto.imagen" [alt]="producto.nombre" class="imagen-ajustada" />
 
-      <div class="producto-info">
-        <h3 class="producto-nombre">{{ producto.nombre }}</h3>
-        <p class="producto-descripcion">{{ producto.descripcion }}</p>
-        <p class="producto-precio"><strong>${{ producto.precio }}</strong></p>
-
-        <button class="petly-boton">Agregar a la carreola</button>
-      </div>
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <p><strong>${{ producto.precio }}</strong></p>
+      <button class="petly-boton" (click)="agregarProducto(producto.id)">Agregar a la carreola</button>
+      <button class="petly-boton petly-secundario" (click)="verDetalle(producto.id)">Ver más</button>
     </div>
   </div>
 </div>

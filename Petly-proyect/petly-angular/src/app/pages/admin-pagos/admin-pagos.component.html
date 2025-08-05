@@ -1,0 +1,45 @@
+<!-- src/app/pages/admin-pagos/admin-pagos.component.html -->
+<div class="petly-container">
+  <h2 class="petly-titulo">Gestión de Pagos</h2>
+  <button routerLink="/admin" class="petly-boton-link">← Volver al panel</button>
+
+  <div *ngIf="mensaje" class="success">{{ mensaje }}</div>
+  <div *ngIf="error" class="petly-error">{{ error }}</div>
+
+  <table class="petly-tabla mt-4">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Total</th>
+        <th>Referencia</th>
+        <th>Fecha</th>
+        <th>Comprobante</th>
+        <th>Estatus</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pago of pagos">
+        <td>{{ pago.id_usuario }}</td>
+        <td>${{ pago.total }}</td>
+        <td>{{ pago.referencia }}</td>
+        <td>{{ pago.fecha_creacion | date: 'short' }}</td>
+        <td>
+          <a *ngIf="pago.comprobante" [href]="backendURL + pago.comprobante" target="_blank">Ver</a>
+          <span *ngIf="!pago.comprobante">No enviado</span>
+        </td>
+<td>
+  <span class="estatus" [ngClass]="pago.estatus.toLowerCase()">{{ pago.estatus }}</span>
+</td>
+        <td>
+          <select #select (change)="cambiarEstatus(pago, select.value)" [value]="pago.estatus">
+  <option>Pendiente</option>
+  <option>Aprobado</option>
+  <option>Rechazado</option>
+</select>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

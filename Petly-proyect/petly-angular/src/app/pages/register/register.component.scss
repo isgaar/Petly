@@ -1,0 +1,91 @@
+// 🎨 Colores base
+$color-fondo: #cee4ff; // Fondo azul claro para toda la página
+$color-principal: #008a0e;
+$color-secundario: #54c45e;
+$color-error: #d32f2f;
+$color-texto: #222;
+
+// 🖋️ Tipografía
+$fuente-principal: 'Poppins', sans-serif;
+$titulo-grande: 2rem;
+$titulo-medio: 1.5rem;
+$texto-normal: 1rem;
+
+// 🌍 Fondo general de la página
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: $color-fondo;
+  font-family: $fuente-principal;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+// 🧩 Contenedor del formulario centrado
+.petly-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 480px;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+// 🖼️ Logo
+.petly-logo {
+  display: block;
+  margin: 0 auto 1rem;
+  max-width: 100px;
+}
+
+// 📝 Títulos
+.petly-titulo {
+  color: $color-principal;
+  font-size: $titulo-grande;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+// 🏷️ Etiquetas
+.petly-label {
+  font-weight: bold;
+  margin-top: 1rem;
+  display: block;
+  color: $color-texto;
+}
+
+// 🧾 Inputs
+.petly-input {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font-size: $texto-normal;
+  box-sizing: border-box;
+}
+
+// 🔘 Botones
+.petly-boton {
+  background-color: $color-secundario;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  padding: 0.8rem;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: darken($color-secundario, 10%);
+  }
+}
+
+// ❌ Errores
+.petly-error {
+  color: $color-error;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}

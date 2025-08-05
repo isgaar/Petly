@@ -1,0 +1,47 @@
+<div class="petly-container">
+  <h2 class="petly-titulo">Administrar Categorías</h2>
+  <button routerLink="/admin/" class="petly-boton-link">🔗 Ir a Admin</button>
+
+  <!-- Filtro de tipo -->
+  <div class="petly-filtro mb-3">
+    <label>Filtrar por tipo:</label>
+    <select [(ngModel)]="filtroTipo" (change)="cargarCategorias()" class="petly-input">
+      <option value="">Todas</option>
+      <option value="mascota">Mascota</option>
+      <option value="producto">Producto</option>
+    </select>
+  </div>
+
+  <!-- Formulario -->
+  <form [formGroup]="categoriaForm" (ngSubmit)="guardarCategoria()">
+    <label class="petly-label">Nombre de la categoría</label>
+    <input type="text" formControlName="nombre" class="petly-input" />
+
+    <label class="petly-label">Tipo de categoría</label>
+    <select formControlName="tipo" class="petly-input">
+      <option value="mascota">Mascota</option>
+      <option value="producto">Producto</option>
+    </select>
+
+    <button type="submit" [disabled]="categoriaForm.invalid" class="petly-boton">
+      {{ editandoCategoria ? 'Actualizar' : 'Agregar' }}
+    </button>
+
+    <button *ngIf="editandoCategoria" type="button" (click)="cancelarEdicion()" class="petly-boton cancelar">
+      Cancelar
+    </button>
+  </form>
+
+  <div *ngIf="mensaje" class="success">{{ mensaje }}</div>
+  <div *ngIf="error" class="petly-error">{{ error }}</div>
+
+  <!-- Lista -->
+  <h3 class="petly-subtitulo mt-4">Categorías actuales</h3>
+  <ul>
+    <li *ngFor="let cat of categorias" class="petly-categoria-item">
+      {{ cat.nombre }} ({{ cat.tipo }})
+      <button class="petly-accion editar" (click)="editar(cat)">✏️</button>
+      <button class="petly-accion eliminar" (click)="eliminar(cat.id)">🗑️</button>
+    </li>
+  </ul>
+</div>
