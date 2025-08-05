@@ -920,4 +920,79 @@ El sistema sigue una arquitectura basada en capas y el patrón MVC. Existen dos 
 ## 📁 Estructura del Proyecto (Versión Node/Angular)
 
 
+# Documentación Técnica de Petly 🐾
+
+## 1. Introducción
+
+**Petly** es una plataforma web y móvil dedicada al comercio electrónico de productos para mascotas, así como a la gestión de adopciones. Está diseñada para ofrecer una experiencia fluida tanto para clientes como para administradores del sistema. El proyecto está estructurado en dos versiones: una desarrollada con Angular y Node.js, y otra versión desarrollada con Laravel (Petly-Web).
+
+## 2. Objetivo del Proyecto
+
+Brindar una solución integral para:
+
+- La venta de productos y servicios para mascotas.
+- La adopción de animales de manera responsable.
+- La visibilidad de refugios y protectoras.
+- La gestión de pedidos, pagos y entregas desde una sola plataforma.
+
+## 3. Arquitectura del Sistema
+
+### 3.1. Versión Angular + Node.js
+
+- **Frontend:** Angular 17 con Material UI.
+- **Backend:** Node.js con Express.
+- **Base de Datos:** MongoDB.
+- **API RESTful:** Comunicación entre frontend y backend.
+- **Autenticación:** JWT (JSON Web Token).
+- **Almacenamiento de imágenes:** Cloudinary / AWS S3.
+
+### 3.2. Versión Laravel (Petly-Web)
+
+- **Framework:** Laravel 11 con Blade.
+- **Base de Datos:** MySQL.
+- **Autenticación:** Laravel Breeze / Sanctum.
+- **Interfaz de administración:** Laravel Nova o Voyager (opcional).
+
+## 4. Módulos Principales
+
+- **Catálogo de productos:** Filtrado por tipo, categoría, precio.
+- **Carrito de compras:** Agregado de productos, actualización de cantidad, eliminación.
+- **Gestión de órdenes:** Creación, seguimiento, historial.
+- **Gestión de usuarios:** Registro, login, perfil, roles (cliente/admin).
+- **Sistema de adopciones:** Formulario de solicitud, revisión, aceptación.
+- **Panel administrativo:** Gestión de inventario, órdenes y usuarios.
+- **Buscador inteligente:** Por nombre, categoría y rango de precios.
+- **Sistema de comentarios y valoraciones** (en desarrollo).
+
+## 5. Requisitos Técnicos
+
+### 5.1. Requisitos de Software
+
+- Node.js >= 20.x.x
+- Angular CLI
+- MongoDB o MySQL
+- Laravel >= 11.x
+- Composer
+- PHP >= 8.3
+- Git
+
+### 5.2. Requisitos del Sistema
+
+- Navegador moderno (Chrome, Firefox, Edge)
+- Servidor local (XAMPP/Laragon para Laravel)
+- Entorno con conexión a internet
+
+## 6. Instalación y Configuración
+
+### 6.1. Angular + Node
+
+```bash
+git clone https://github.com/usuario/petly.git
+cd petly/frontend
+npm install
+ng serve
+
+cd ../backend
+npm install
+npm start
 
