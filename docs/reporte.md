@@ -768,3 +768,21 @@ La clave es diseñar bien las *rutas API* y asegurar que Angular consuma esas ru
   * En Vercel se configuraría el proyecto apuntando a `frontend/dist` como directorio público.
   * **Alternativa**: Servir Angular y Express juntos en un VPS o contenedor Docker, si se desea. Sin embargo, la tendencia es desacoplar dominios/subdominios: p.ej. `app.petly.com` (Angular) y `api.petly.com` (Express).
   * **Variables de entorno**: Asegurar que en producción estén configuradas (datos de BD, secretos JWT, APIs de email/SMS). Usar CI/CD para builds (`ng build --prod`) y deploy continuo.
+
+  git add .
+git commit -m "docs: se agregó documentación técnica del sistema Petly incluyendo descripción del proyecto, arquitectura MVC y flujos de trabajo"
+
+# Explicación extendida (opcional, si usas `git commit` sin -m para escribir más largo):
+#
+# Se añadió un documento detallado que describe el funcionamiento general de la plataforma Petly,
+# incluyendo los módulos de tienda y adopción de mascotas. El contenido cubre:
+# - Descripción general del propósito del sistema
+# - Explicación del patrón arquitectónico MVC aplicado en Laravel
+# - Análisis del flujo de peticiones HTTP
+# - Ejemplos específicos: inicio de sesión con 2FA, proceso de compra y flujo de adopción de mascotas
+#
+# Esta documentación será clave para futuros desarrolladores, revisores y para los entregables del proyecto académico.
+
+git add docs/petly-documentacion.md
+git commit -m "docs: agregado archivo de documentación técnica general de Petly en docs/petly-documentacion.md"
+
