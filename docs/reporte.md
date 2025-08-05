@@ -883,5 +883,41 @@ Si deseas contribuir a Petly:
 
 ---
 
+# Documentación Técnica General - Petly
+
+## 📌 Objetivo del Proyecto
+
+Petly es una plataforma web dedicada a la comercialización de productos para mascotas y la adopción responsable de animales. Su propósito es conectar a dueños de mascotas y protectoras de animales mediante un entorno digital intuitivo, seguro y de fácil acceso.
+
+---
+
+## 🏗️ Arquitectura General
+
+El sistema sigue una arquitectura basada en capas y el patrón MVC. Existen dos versiones del sistema:
+
+- **Petly (Angular + Node.js)**: SPA moderna con backend en Express.
+- **Petly-Web (Laravel)**: Versión basada en Laravel y Blade para entornos donde PHP es preferido.
+
+
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+| Tecnología | Versión | Uso |
+|------------|---------|-----|
+| Angular | 17+ | Interfaz de usuario SPA |
+| Node.js | 20+ | Backend y API REST |
+| Laravel | 11 | Backend alternativo |
+| MySQL | 8.0+ | Base de datos relacional |
+| Bootstrap / Tailwind | - | Estilos UI |
+| JWT | - | Autenticación |
+| Docker | Opcional | Contenedores |
+| Git / GitHub | - | Control de versiones |
+
+---
+
+## 📁 Estructura del Proyecto (Versión Node/Angular)
+
 
 
