@@ -4,61 +4,79 @@
 
   <form [formGroup]="registerForm" (ngSubmit)="registrar()">
 
-    <!-- Paso 1 -->
-    <div *ngIf="step === 1">
-      <label class="petly-label">Nombre</label>
-      <input type="text" formControlName="nombre" class="petly-input" />
-      <div *ngIf="mostrarErrores && registerForm.get('nombre')?.invalid" class="petly-error">
-        Este campo es obligatorio.
+    <!-- Paso 1: Información personal -->
+    <div *ngIf="step === 1" class="petly-form-step">
+      <div class="petly-form-group">
+        <label class="petly-label">Nombre</label>
+        <input type="text" formControlName="nombre" class="petly-input" />
+        <div *ngIf="mostrarErrores && registerForm.get('nombre')?.invalid" class="petly-error">
+          Este campo es obligatorio.
+        </div>
       </div>
 
-      <label class="petly-label">Primer Apellido</label>
-      <input type="text" formControlName="primerApellido" class="petly-input" />
-      <div *ngIf="mostrarErrores && registerForm.get('primerApellido')?.invalid" class="petly-error">
-        Este campo es obligatorio.
+      <div class="petly-form-group">
+        <label class="petly-label">Primer Apellido</label>
+        <input type="text" formControlName="primerApellido" class="petly-input" />
+        <div *ngIf="mostrarErrores && registerForm.get('primerApellido')?.invalid" class="petly-error">
+          Este campo es obligatorio.
+        </div>
       </div>
 
-      <label class="petly-label">Segundo Apellido</label>
-      <input type="text" formControlName="segundoApellido" class="petly-input" />
-      <div *ngIf="mostrarErrores && registerForm.get('segundoApellido')?.invalid" class="petly-error">
-        Este campo es obligatorio.
+      <div class="petly-form-group">
+        <label class="petly-label">Segundo Apellido</label>
+        <input type="text" formControlName="segundoApellido" class="petly-input" />
+        <div *ngIf="mostrarErrores && registerForm.get('segundoApellido')?.invalid" class="petly-error">
+          Este campo es obligatorio.
+        </div>
       </div>
 
-      <label class="petly-label">CURP</label>
-      <input type="text" formControlName="curp" class="petly-input" />
-      <div *ngIf="mostrarErrores && registerForm.get('curp')?.invalid" class="petly-error">
-        La CURP debe tener exactamente 18 caracteres.
+      <div class="petly-form-group">
+        <label class="petly-label">CURP</label>
+        <input type="text" formControlName="curp" class="petly-input" />
+        <div *ngIf="mostrarErrores && registerForm.get('curp')?.invalid" class="petly-error">
+          La CURP debe tener exactamente 18 caracteres.
+        </div>
       </div>
 
-      <button type="button" (click)="nextStep()" class="petly-boton">Siguiente</button>
+      <div class="petly-buttons">
+        <button type="button" (click)="nextStep()" class="petly-boton">Siguiente</button>
+      </div>
     </div>
 
-    <!-- Paso 2 -->
-    <div *ngIf="step === 2">
-      <label class="petly-label">Correo electrónico</label>
-      <input type="email" formControlName="correo" class="petly-input" />
-      <div *ngIf="mostrarErrores && registerForm.get('correo')?.invalid" class="petly-error">
-        Ingresa un correo válido.
+    <!-- Paso 2: Credenciales -->
+    <div *ngIf="step === 2" class="petly-form-step">
+      <div class="petly-form-group">
+        <label class="petly-label">Correo electrónico</label>
+        <input type="email" formControlName="correo" class="petly-input" />
+        <div *ngIf="mostrarErrores && registerForm.get('correo')?.invalid" class="petly-error">
+          Ingresa un correo válido.
+        </div>
       </div>
 
-      <label class="petly-label">Contraseña</label>
-      <input type="password" formControlName="contrasena" class="petly-input" />
-      <div *ngIf="mostrarErrores && registerForm.get('contrasena')?.invalid" class="petly-error">
-        La contraseña debe tener al menos 6 caracteres.
+      <div class="petly-form-group">
+        <label class="petly-label">Contraseña</label>
+        <input type="password" formControlName="contrasena" class="petly-input" />
+        <div *ngIf="mostrarErrores && registerForm.get('contrasena')?.invalid" class="petly-error">
+          La contraseña debe tener al menos 6 caracteres.
+        </div>
       </div>
 
-      <label class="petly-label">Confirmar contraseña</label>
-      <input type="password" formControlName="confirmarContrasena" class="petly-input" />
-      <div *ngIf="mostrarErrores && registerForm.get('confirmarContrasena')?.invalid" class="petly-error">
-        Confirma tu contraseña.
+      <div class="petly-form-group">
+        <label class="petly-label">Confirmar contraseña</label>
+        <input type="password" formControlName="confirmarContrasena" class="petly-input" />
+        <div *ngIf="mostrarErrores && registerForm.get('confirmarContrasena')?.invalid" class="petly-error">
+          Confirma tu contraseña.
+        </div>
+
+        <div *ngIf="mostrarErrores && registerForm.value.contrasena !== registerForm.value.confirmarContrasena" class="petly-error">
+          Las contraseñas no coinciden.
+        </div>
       </div>
 
-      <div *ngIf="mostrarErrores && registerForm.value.contrasena !== registerForm.value.confirmarContrasena" class="petly-error">
-        Las contraseñas no coinciden.
+      <div class="petly-buttons">
+        <button type="button" (click)="previousStep()" class="petly-boton">Regresar</button>
+        <button type="submit" class="petly-boton">Registrarse</button>
       </div>
-
-      <button type="button" (click)="previousStep()" class="petly-boton">Regresar</button>
-      <button type="submit" class="petly-boton">Registrarse</button>
     </div>
 
   </form>
