@@ -6,8 +6,45 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    /* Estilos de una interfaz visual básica */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #fefcea, #f1da36);
+    }
+
+    .splash-screen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #fffbe6;
+      color: #444;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <app-root></app-root>
+  <div class="splash-screen" id="splash">
+    Cargando Petly...
+  </div>
+
+  <app-root style="display: none;"></app-root>
+
+  <script>
+    // Este script espera a que Angular cargue y muestra la app
+    window.addEventListener('DOMContentLoaded', () => {
+      const splash = document.getElementById('splash');
+      const appRoot = document.querySelector('app-root');
+
+      // Esperamos un poco para simular carga (opcional)
+      setTimeout(() => {
+        splash.style.display = 'none';
+        appRoot.style.display = 'block';
+      }, 500); // puedes ajustar el tiempo si gustas
+    });
+  </script>
 </body>
 </html>
