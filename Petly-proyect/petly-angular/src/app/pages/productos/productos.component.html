@@ -3,11 +3,15 @@
 
   <div class="petly-grid">
     <div *ngFor="let producto of productos" class="producto-card">
-      <img [src]="producto.imagen" [alt]="producto.nombre" />
-      <h3>{{ producto.nombre }}</h3>
-      <p>{{ producto.descripcion }}</p>
-      <p><strong>${{ producto.precio }}</strong></p>
-      <button class="petly-boton">Agregar a la carreola</button>
+      <img [src]="producto.imagen" [alt]="producto.nombre" class="producto-imagen" />
+
+      <div class="producto-info">
+        <h3 class="producto-nombre">{{ producto.nombre }}</h3>
+        <p class="producto-descripcion">{{ producto.descripcion }}</p>
+        <p class="producto-precio"><strong>${{ producto.precio }}</strong></p>
+
+        <button class="petly-boton">Agregar a la carreola</button>
+      </div>
     </div>
   </div>
 </div>
