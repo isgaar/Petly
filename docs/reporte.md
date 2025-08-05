@@ -802,4 +802,86 @@ Esta ampliación complementa las secciones anteriores del documento que describe
 El archivo actualizado es `docs/petly-documentacion.md`, y servirá como base sólida para entregables académicos, revisión de pares o desarrollo colaborativo profesional.
 
 
+## 3. Flujos de Usuario
+
+- Registro de Usuario
+- Inicio de Sesión
+- Navegación por productos o mascotas
+- Agregar al carrito / Solicitar adopción
+- Confirmar compra o adopción
+- Visualizar historial
+
+## 4. Seguridad
+
+- Validación y sanitización de entradas
+- Protección contra ataques XSS, CSRF y SQL Injection
+- Uso de HTTPS y tokens JWT
+- Middleware personalizado para roles
+- Rate limiting con Express
+
+## 5. Autenticación
+
+- Login con JWT en backend Express
+- Middleware de autenticación para rutas privadas
+- Laravel utiliza `Auth::guard()` y `Sanctum` (opcional)
+
+## 6. Internacionalización (i18n)
+
+- Estructura multilenguaje con JSON (es/en)
+- Angular: uso de `ngx-translate`
+- Laravel: directorio `resources/lang/`
+
+## 7. Accesibilidad
+
+- Navegación por teclado (WCAG 2.1)
+- Contrastes adecuados y uso de `aria-label`
+- Alternativas de texto para imágenes
+
+## 8. Testing
+
+- Angular: Pruebas con Jasmine y Karma
+- Node.js: Pruebas unitarias con Jest
+- Laravel: Pruebas con PHPUnit
+
+## 9. Logging y Monitoreo
+
+- Express: integración con `morgan` y `winston`
+- Laravel: canal de logs con `monolog`
+- Logs de errores personalizados por entorno
+- Posibilidad de integración con Sentry
+
+## 10. CI/CD
+
+- GitHub Actions para pruebas y build automático
+- Despliegue a Vercel (Angular) y Railway/Render (Node)
+- Laravel en Laravel Forge o VPS con Docker
+- Scripts de build: `ng build --prod`, `npm run start:prod`
+
+## 11. Variables de Entorno
+
+- `.env` para Express y Laravel
+- Variables críticas: claves API, URIs de bases de datos, puertos, credenciales
+
+## 12. Escalabilidad
+
+- Base de datos relacional PostgreSQL o MySQL
+- Separación de servicios en contenedores (Docker)
+- Balanceo de carga y replicación futura
+- Frontend adaptable a móviles y PWA
+
+## 13. Licencia
+
+Este proyecto está licenciado bajo la licencia MIT.
+
+## 14. Contribuciones
+
+Si deseas contribuir a Petly:
+1. Haz un fork del repositorio.
+2. Crea una rama con tu funcionalidad: `git checkout -b feature/NuevaFuncionalidad`.
+3. Haz commit de tus cambios.
+4. Abre un pull request.
+
+---
+
+
 
